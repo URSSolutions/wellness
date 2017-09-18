@@ -12,6 +12,7 @@ gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'webpacker'
 gem 'active_model_serializers'
+gem 'devise'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
