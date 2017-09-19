@@ -39,6 +39,25 @@ ActiveRecord::Schema.define(version: 20170920134728) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "occupation"
+    t.string "phone"
+    t.datetime "birth_date"
+    t.integer "gender"
+    t.float "height"
+    t.float "weight"
+    t.string "physical_activities"
+    t.boolean "smoke"
+    t.string "smoke_frequency"
+    t.boolean "drink"
+    t.string "drink_frequency"
+    t.string "family_diseases"
+    t.string "medicines"
+    t.string "daily_water_quantity"
+    t.string "favorite_dishes"
+    t.string "disliked_dishes"
+    t.integer "chew"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
