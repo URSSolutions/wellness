@@ -2,10 +2,13 @@ import * as TYPES from '../actions/types'
 
 export const auth = (state = {}, action) => {
   switch (action.type) {
-    case TYPES.FETCH_AUTH:
+    case TYPES.DISPATCH_AUTH_LOGOUT_SUCCESS:
+      return {}
+
+    case TYPES.DISPATCH_AUTH_LOGOUT_ERROR:
       return {
         ...state,
-        action.auth
+        error: action.error
       }
 
     default:
