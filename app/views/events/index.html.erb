@@ -54,35 +54,31 @@
 
   <ul class="events__cards">
 
-    <li class="events__card">
+    <% @events.each do | event | %>
 
-      <h3> event name xx </h3>
+      <li class="events__card">
 
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
+        <h3> <%= event.name %> </h3>
 
-      <h4> professional name </h4>
+        <p> <%= event.description %> </p>
 
-      <div>
-
-        <img src="" alt="Foto do profissional">
+        <h4> professional name </h4>
 
         <div>
 
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit
-          </p>
+          <img src="" alt="Foto do profissional">
 
-          <p>
-            Lorem ipsum dolor sit amet.
-          </p>
-        </div>
-      </div>
-    </li>
+          <div>
+
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit
+            </p>
+
+            <p>
+              Lorem ipsum dolor sit amet.
+            </p>
+      </li>
+    <% end %>
   </ul>
 </section>
 
