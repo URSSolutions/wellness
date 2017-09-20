@@ -7,37 +7,45 @@
   </div>
 </header>
 
-<section class="detail">
-  <h2> Monitore sua saúde com dietas acompanhadas por profissionais qualificado </h2>
+<section class="details">
 
-  <p>
-    Participe de um evento, envie seu status diariamente e receba orientação da sua dieta através um profissional qualificado.
-  </p>
+  <h2 class="details__title"> Cuide da sua saúde de forma descomplicada com a ajuda de um profissional qualificado! </h2>
 
-  <div class="details__items">
+  <ul class="details__list">
 
-    <div class="details__item">
+    <li class="details__item">
 
-      <img src="" alt="Celular desenhado" />
+      <%= image_tag("cellphone-icon.svg", class: "details__image", alt: "Celular desenhado") %>
 
       <h3> Rápido e prático </h3>
 
       <p>
-        Envie uma foto da sua comida ou seu peso de qualquer lugar que estiver acessando do seu celular, notebook ou desktop!
+        Envie uma foto da sua comida ou seu peso de qualquer lugar acessando do seu celular, notebook ou desktop.
       </p>
-    </div>
+    </li>
 
-    <div class="details__item">
+    <li class="details__item">
 
-      <img src="" alt="Icone de informação" />
+      <%= image_tag("info-icon.svg", class: "details__image", alt: "Celular desenhado") %>
 
-      <h3> Feeback diário </h3>
+      <h3> Se mantenha informado </h3>
 
       <p>
-        Receba todo dia uma orientação de um profissional sobre o que você está comendo
+        Tenha acesso a informações detalhadas sobre como está indo a sua dieta te ajudando a definir uma meta.
       </p>
-    </div>
-  </div>
+    </li>
+
+    <li class="details__item">
+
+      <%= image_tag("heart-icon.svg", class: "details__image", alt: "Icone de coração") %>
+
+      <h3> Fique saúdavel </h3>
+
+      <p>
+         Seguindo as orientações dadas pelo o profissional você sentirá a diferença em pouco tempo.
+      </p>
+    </li>
+  </ul>
 </section>
 
 <section class="events">

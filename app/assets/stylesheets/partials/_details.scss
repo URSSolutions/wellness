@@ -1,0 +1,43 @@
+.details {
+  text-align: center;
+  margin: auto;
+  width: 90%;
+  padding-bottom: 50px;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    @include tablet {
+      flex-direction: row;
+    }
+  }
+
+  &__item {
+    @include tablet {
+      font-size: 1.2rem;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    @include tablet {
+      font-size: 2rem;
+    }
+  }
+
+  &__image {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    height: 100px;
+
+    @include tablet {
+      height: 120px;
+    }
+  }
+}
