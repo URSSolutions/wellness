@@ -29,13 +29,13 @@
     margin: 29px 7px;
 
     @include tablet {
-      max-width: 48%;
+      width: 48%;
       max-height: 300px;
       margin: 22px 7px;
     }
 
     @include desktop {
-      max-width: 30%;
+      width: 20%;
       height: 250px;
       margin-top: 14px;
       margin-bottom: 14px;
@@ -43,8 +43,8 @@
 
     &__content {
       height: 90%;
+
       @include tablet {
-        overflow: scroll;
         height: 90%;
       }
 
