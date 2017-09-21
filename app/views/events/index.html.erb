@@ -1,0 +1,97 @@
+<header class="header">
+  <div>
+    <h1 class="header__title"> Wellness </h1>
+
+    <p class="header__text">
+      Descomplique a sua saúde e a sua dieta
+    </p>
+  </div>
+</header>
+
+<section class="details">
+  <h2 class="details__title"> Cuide da sua saúde de forma descomplicada com a ajuda de um profissional qualificado! </h2>
+
+  <ul class="details__list">
+    <li class="details__item">
+      <%= image_tag("cellphone-icon.svg", class: "details__image", alt: "Celular desenhado") %>
+
+      <h3> Rápido e prático </h3>
+
+      <p> Envie uma foto da sua comida ou seu peso de qualquer lugar acessando do seu celular, notebook ou desktop. </p>
+    </li>
+
+    <li class="details__item">
+      <%= image_tag("info-icon.svg", class: "details__image", alt: "Celular desenhado") %>
+
+      <h3> Se mantenha informado </h3>
+
+      <p> Tenha acesso a informações detalhadas sobre como está indo a sua dieta te ajudando a definir uma meta. </p>
+    </li>
+
+    <li class="details__item">
+      <%= image_tag("heart-icon.svg", class: "details__image", alt: "Icone de coração") %>
+
+      <h3> Fique saúdavel </h3>
+
+      <p> Seguindo as orientações dadas pelo o profissional você sentirá a diferença em pouco tempo. </p>
+    </li>
+  </ul>
+</section>
+
+<section class="events">
+  <h2 class="events__title"> Eventos </h2>
+
+  <ul class="events__cards">
+
+    <% @events.each do | event | %>
+
+    <li class="card events__card">
+      <div class="card-content events__card__content">
+        <h3>
+          <span class="card-title activator grey-text text-darken-4">
+            <%= event.name %> <i class="material-icons right"> more_vert </i>
+          </span>
+        </h3>
+
+        <p> <%= event.description %> </p>
+      </div>
+
+      <div class="card-reveal">
+        <h3>
+          <span class="card-title grey-text text-darken-4">
+            Detalhes: <i class="material-icons right"> close </i>
+          </span>
+        </h3>
+
+        <div class="container">
+          <div class="events__more-info">
+            <p> <strong> Data inicial: </strong> <%= event.initial_date %> </p>
+
+            <p> <strong> Data final: </strong> <%= event.final_date %> </p>
+
+            <p> <strong> Quantidade de vagas: </strong> 1/<%= event.max_attendees %> </p>
+          </div>
+
+          <div class="events__professional">
+            <div class="events__professional-image"> </div>
+
+            <div class="events__professional-text">
+              <h4> professional name </h4>
+
+              <p> Nutricionista topper </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <a href="#">Comprar</a>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</section>
+
+<footer class="footer">
+  <p> Todos os direitos reservados. </p>
+</footer>
