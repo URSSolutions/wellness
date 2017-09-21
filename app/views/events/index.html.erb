@@ -1,6 +1,8 @@
 <header class="header">
   <div>
+
     <h1 class="header__title"> Wellness </h1>
+
     <p class="header__text">
       Descomplique a sua saúde e a sua dieta
     </p>
@@ -50,41 +52,70 @@
 
 <section class="events">
 
-  <h2> Eventos </h2>
+  <h2 class="events__title"> Eventos </h2>
 
   <ul class="events__cards">
 
     <% @events.each do | event | %>
 
-      <li class="events__card">
+    <li class="card events__card">
 
-        <h3> <%= event.name %> </h3>
+      <div class="card-content events__card__content">
+
+        <h3>
+          <span class="card-title activator grey-text text-darken-4">
+
+            <%= event.name %> <i class="material-icons right"> more_vert </i>
+          </span>
+        </h3>
 
         <p> <%= event.description %> </p>
+      </div>
 
-        <h4> professional name </h4>
+      <div class="card-reveal">
 
-        <div>
+        <h3>
+          <span class="card-title grey-text text-darken-4">
 
-          <img src="" alt="Foto do profissional">
+            Detalhes: <i class="material-icons right"> close </i>
+          </span>
+        </h3>
 
-          <div>
+        <div class="container">
+          <div class="events__more-info">
+            <p> <strong> Data inicial: </strong> <%= event.initial_date %> </p>
 
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit
-            </p>
+            <p> <strong> Data final: </strong> <%= event.final_date %> </p>
 
-            <p>
-              Lorem ipsum dolor sit amet.
-            </p>
-      </li>
+            <p> <strong> Quantidade de vagas: </strong> 1/<%= event.max_attendees %> </p>
+          </div>
+
+          <div class="events__professional">
+
+            <div class="events__professional-image"> </div>
+            <!-- <img class="events__professional-image" src="" alt="Foto do profissional"> -->
+
+            <div class="events__professional-text">
+              <h4> professional name </h4>
+
+              <p>
+                Nutricionista topper
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-action">
+
+        <a href="#">Comprar</a>
+      </div>
+    </li>
     <% end %>
   </ul>
 </section>
 
 <footer class="footer">
 
-  <p>
-    Todos os direitos reservados.
-  </p>
+  <p> Todos os direitos reservados. </p>
 </footer>
