@@ -1,5 +1,5 @@
 .events {
-  background-color: rgba(8, 143, 240, 0.9);
+  background-color: rgba($light-blue, 0.9);
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 10px;
@@ -9,7 +9,7 @@
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #fff;
+    color: $white;
     margin-bottom: 20px;
   }
 
@@ -71,7 +71,7 @@
 
   &__professional-image {
     border-radius: 50%;
-    background-color: blue;
+    background-color: rgba($light-blue, .8);
     width: 60px;
     height: 60px;
   }
