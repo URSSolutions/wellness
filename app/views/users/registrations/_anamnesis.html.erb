@@ -1,0 +1,94 @@
+<div class="field">
+  <%= form.label :first_name %>
+  <%= form.text_field :first_name%>
+</div>
+
+<div class="field">
+  <%= form.label :last_name %>
+  <%= form.text_field :last_name%>
+</div>
+
+<div class="field">
+  <%= form.label :occupation %>
+  <%= form.text_field :occupation%>
+</div>
+
+<div class="field">
+  <%= form.label :phone %>
+  <%= form.text_field :phone%>
+</div>
+
+<div class="field">
+  <%= form.label :birth_date %>
+  <%= form.date_select :birth_date, start_year: 100.years.ago.year, end_year: Time.current.year %>
+</div>
+
+<div class="field">
+  <%= form.label :gender %>
+  <%= form.select :gender, [['Masculino', :male], ['Feminino', :female], ['Outros', :other]] %>
+</div>
+
+<div class="field">
+  <%= form.label :height %>
+  <%= form.text_field :height%>
+</div>
+
+<div class="field">
+  <%= form.label :weight %>
+  <%= form.text_field :weight%>
+</div>
+
+<div class="field">
+  <%= form.label :physical_activities %>
+  <%= form.text_area :physical_activities%>
+</div>
+
+<div class="field">
+  <%= form.label :smoke %>
+  <%= form.check_box :smoke%>
+</div>
+
+<div class="field">
+  <%= form.label :smoke_frequency %>
+  <%= form.text_field :smoke_frequency%>
+</div>
+
+<div class="field">
+  <%= form.label :drink %>
+  <%= form.check_box :drink%>
+</div>
+
+<div class="field">
+  <%= form.label :drink_frequency %>
+  <%= form.text_field :drink_frequency%>
+</div>
+
+<div class="field">
+  <%= form.label :family_diseases %>
+  <%= form.text_area :family_diseases%>
+</div>
+
+<div class="field">
+  <%= form.label :medicines %>
+  <%= form.text_area :medicines%>
+</div>
+
+<div class="field">
+  <%= form.label :daily_water_quantity %>
+  <%= form.text_field :daily_water_quantity%>
+</div>
+
+<div class="field">
+  <%= form.label :favorite_dishes %>
+  <%= form.text_area :favorite_dishes%>
+</div>
+
+<div class="field">
+  <%= form.label :disliked_dishes %>
+  <%= form.text_area :disliked_dishes%>
+</div>
+
+<div class="field">
+  <%= form.label :chew %>
+  <%= form.select :chew, [['Devagar', :slow], ['Média', :medium], ['Rápida', :fast]] %>
+</div>

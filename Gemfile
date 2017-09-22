@@ -14,6 +14,8 @@ gem 'webpacker'
 gem 'active_model_serializers'
 gem 'devise'
 gem 'foreman'
+gem 'rspec-rails'
+gem "capybara"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
