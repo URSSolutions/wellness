@@ -1,0 +1,32 @@
+.login {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  @include tablet {
+    flex-direction: column;
+  }
+
+  &__title {
+    padding-top: 50px;
+  }
+
+  &__form {
+    width: 100%;
+
+    @include tablet {
+      margin-top: 50px;
+      width: 60%;
+    }
+
+    @include desktop {
+      width: 40%;
+    }
+  }
+
+  &__links {
+    margin-top: 30px;
+  }
+}
