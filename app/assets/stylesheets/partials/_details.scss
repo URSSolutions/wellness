@@ -3,6 +3,13 @@
   margin: auto;
   width: 90%;
   padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  @include tablet {
+    min-height: 80vh;
+  }
 
   &__list {
     display: flex;
@@ -10,6 +17,7 @@
 
     @include tablet {
       flex-direction: row;
+      padding-bottom: 90px;
     }
   }
 
