@@ -1,41 +1,41 @@
 <section class="login">
-    <%= render 'shared/header' %>
+    <%= render "shared/header" %>
 
-    <h2 class="login__title">Log in</h2>
+    <h2 class="login__title">Acessar</h2>
 
     <div class="login__form">
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="row">
-        <div class="input-field col s12">
-          <%= f.label :email %>
-          <%= f.email_field :email, autofocus: true %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true %>
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="input-field col s12">
-          <%= f.label :password, 'Senha', class: 'validate'%>
-          <%= f.password_field :password, autocomplete: "off" %>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.label :password, "Senha", class: "validate"%>
+            <%= f.password_field :password, autocomplete: "off" %>
+          </div>
         </div>
-      </div>
 
-      <% if devise_mapping.rememberable? -%>
-      <div class="row">
-        <div class="field col s12">
-          <%= f.check_box :remember_me, class: 'filled-in' %>
-          <%= f.label :remember_me, 'Lembrar de mim' %>
+        <% if devise_mapping.rememberable? -%>
+        <div class="row">
+          <div class="field col s12">
+            <%= f.check_box :remember_me, class: "filled-in" %>
+            <%= f.label :remember_me, "Lembrar de mim" %>
+          </div>
         </div>
-      </div>
-      <% end -%>
+        <% end -%>
 
-      <div class="waves-effect waves-light btn">
-        <%= f.submit "Entrar" %>
-      </div>
-    <% end %>
+        <div class="waves-effect waves-light btn">
+          <%= f.submit "Entrar" %>
+        </div>
+      <% end %>
 
-    <div class="login__links">
-      <%= render "users/shared/links" %>
+      <div class="login__links">
+        <%= render "users/shared/links" %>
+      </div>
     </div>
-  </div>
 </section>
