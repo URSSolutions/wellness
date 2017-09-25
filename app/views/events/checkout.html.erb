@@ -1,0 +1,19 @@
+<%= render 'shared/header' %>
+
+<section class="checkout">
+  <h2>Checkout</h2>
+  <div class="card medium">
+    <h3 class="checkout__title"><%= @event.name %></h3>
+
+    <p class="checkout__description">
+      <%= @event.description %>
+    </p>
+
+    <div class="card-action">
+      <button class="btn waves-effect waves-light" type="submit" name="action">
+        Confirmar
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </div>
+</section>
