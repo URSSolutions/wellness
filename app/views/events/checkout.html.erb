@@ -10,10 +10,9 @@
     </p>
 
     <div class="card-action">
-      <button class="btn waves-effect waves-light" type="submit" name="action">
-        Confirmar
-        <i class="material-icons right">send</i>
-      </button>
+      <%= form_for(@subscription, url: "/events/#{@event.id}/buy", method: :post) do |f| %>
+        <%= f.submit 'Confirmar', class: "btn waves-effect waves-light" %>
+      <% end %>
     </div>
   </div>
 </section>
