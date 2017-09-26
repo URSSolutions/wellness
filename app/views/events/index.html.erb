@@ -87,7 +87,7 @@
       </div>
 
       <div class="card-action">
-        <a href="#">Comprar</a>
+        <%= link_to 'Comprar', "/events/#{event.id}/checkout" %>
       </div>
     </li>
     <% end %>
