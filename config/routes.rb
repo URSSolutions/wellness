@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root 'events#index'
 
   namespace :app, path: '/app', constraints: { format: :html } do
+    get '/', to: 'users#app'
     get '/*path', to: 'users#app'
   end
 end
