@@ -10,10 +10,12 @@ const Root = ({ store, history }) => {
   return (
     <Provider store={ store }>
       <Router history={ history }>
-        <Route path='/' component={ App } />
+        <div>
+          <Route path='/' component={ App } />
+        </div>
       </Router>
     </Provider>
   )
 }
 
-export default App
+export default Root

@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from '../actions/auth'
 
+import ReportModal from '../components/report-modal'
+import Header from '../components/header'
+
 class App extends Component {
   constructor (props) {
     super(props)
@@ -15,9 +18,10 @@ class App extends Component {
   }
 
   render () {
+    const { state } = this
     return (
       <section>
-        <button onClick={ this.dispatchLogout }> sair </button>
+        <Header dispatchLogout={ this.dispatchLogout } />
       </section>
     )
   }

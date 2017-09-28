@@ -28,6 +28,6 @@ const enhancer = compose(
 const store = createStore(reducers, {}, enhancer)
 
 ReactDOM.render(
-  <Root store={store} />,
+  <Root store={ store } />,
   document.getElementById('root'),
 )

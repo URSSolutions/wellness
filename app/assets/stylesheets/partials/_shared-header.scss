@@ -41,4 +41,24 @@
       font-size: 8rem;
     }
   }
+
+  &__logout {
+    position: absolute;
+    color: $white;
+    top: 5px;
+    right: 10px;
+
+    i {
+      font-size: 35px;
+    }
+
+    @include tablet {
+      top: 10px;
+      right: 20px;
+
+      i {
+        font-size: 45px;
+      }
+    }
+  }
 }
