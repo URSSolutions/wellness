@@ -1,3 +1,16 @@
+<div class="navbar-fixed">
+   <nav>
+     <div class="nav-wrapper red darken-3">
+       <% if flash[:notice] %>
+       <div class="notice"><%= flash[:notice] %></div>
+       <% end %>
+       <% if flash[:error] %>
+       <div class="notice"><%= flash[:error] %></div>
+       <% end %>
+     </div>
+   </nav>
+ </div>
+
 <header class="header">
   <div>
     <h1 class="header__title"> Wellness </h1>
