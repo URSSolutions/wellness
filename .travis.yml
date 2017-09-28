@@ -1,0 +1,11 @@
+language: ruby
+cache:
+  - bundler
+before_script:
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
+  - bundle exec rake assets:precompile
+deploy:
+  provider: heroku
+  api_key:
+    secure: "b0d0f2f0-9f40-44c9-81ea-b9ad0ad996bc"
