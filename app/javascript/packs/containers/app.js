@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from '../actions/auth'
 
-import ReportModal from '../components/report-modal'
 import Header from '../components/header'
 
 class App extends Component {
