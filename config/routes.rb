@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  devise_for :profissionals
+  devise_for :professionals
 
   root 'events#index'
 

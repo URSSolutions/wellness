@@ -1,4 +1,4 @@
-class Profissional < ApplicationRecord
+class Professional < ApplicationRecord
   devise :database_authenticatable, :rememberable, :trackable, :validatable
 
   validates_presence_of :occupation, :first_name, :last_name, :experience_years
