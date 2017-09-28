@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   namespace :app, path: '/app', constraints: { format: :html } do
     get '/', to: 'users#app'
     get '/*path', to: 'users#app'
+    get '/', to: 'users#app'
   end
 end
