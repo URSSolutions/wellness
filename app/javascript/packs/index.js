@@ -13,9 +13,11 @@ import {
 
 import Root from './containers/root'
 import { auth } from './reducers/auth'
+import { feedback } from './reducers/feedback'
 
 const reducers = combineReducers({
-  auth
+  auth,
+  feedback
 })
 
 const enhancer = compose(

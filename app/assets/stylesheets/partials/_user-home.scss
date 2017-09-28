@@ -1,0 +1,19 @@
+.user-home {
+  display: flex;
+  flex-direction: column;
+
+  &__name {
+    font-size: 2rem;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    padding-left: 10px;
+  }
+
+  &__event-name {
+    text-align: center;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

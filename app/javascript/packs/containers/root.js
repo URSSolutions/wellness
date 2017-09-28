@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 import App from './app'
+import UserHome from './user-home'
 
 const Root = ({ store, history }) => {
   return (
@@ -12,6 +13,7 @@ const Root = ({ store, history }) => {
       <Router history={ history }>
         <div>
           <Route path='/' component={ App } />
+          <Route path='/' component={ UserHome } />
         </div>
       </Router>
     </Provider>
