@@ -13,7 +13,7 @@ const Header = (props) => {
           <span
             className="shared-header__logout"
             onClick={ props.dispatchLogout }>
-             <i className="material-icons"> exit_to_app </i>
+              <i className="material-icons"> exit_to_app </i>
           </span>
       </header>
     </section>
