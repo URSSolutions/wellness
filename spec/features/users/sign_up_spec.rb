@@ -33,7 +33,7 @@ RSpec.feature "User sign up", type: :feature do
     fill_in "Last name", with: last_name
     fill_in "Occupation", with: occupation
     fill_in "Phone", with: phone
-    CapybaraHelpers.select_date page, birth_date, from: 'user_birth_date'
+    fill_in "user_birth_date", with: birth_date
     find(:id, 'user_gender').find(:option, gender).select_option
     fill_in "Height", with: height
     fill_in "Weight", with: weight

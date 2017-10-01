@@ -15,7 +15,7 @@ RSpec.feature "professional sign in", type: :feature do
     logged_times = professional.sign_in_count
 
     fill_in "Email", with: email
-    fill_in "Password", with: password
+    fill_in "Senha", with: password
 
     click_button "Log in"
 
