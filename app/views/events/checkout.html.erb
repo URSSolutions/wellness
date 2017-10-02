@@ -1,0 +1,18 @@
+<%= render 'shared/header' %>
+
+<section class="checkout">
+  <h2>Checkout</h2>
+  <div class="card medium">
+    <h3 class="checkout__title"><%= @event.name %></h3>
+
+    <p class="checkout__description">
+      <%= @event.description %>
+    </p>
+
+    <div class="card-action">
+      <%= form_for(@subscription, url: "/events/#{@event.id}/buy", method: :post) do |f| %>
+        <%= f.submit 'Confirmar', class: "btn waves-effect waves-light" %>
+      <% end %>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,47 @@
+pt-BR:
+  activerecord:
+    models:
+      user:
+        one: Usuário
+        other: Usuários
+    attributes:
+      user:
+        encrypted_password: Senha encriptada
+        reset_password_token: Chave de redefinição de senha
+        reset_password_sent_at: Chave de redefinição de senha enviada em
+        remember_created_at: Relembrado em
+        sign_in_count: Contagem de logins
+        current_sign_in_at: Login atual em
+        last_sign_in_at: Último login em
+        current_sign_in_ip: Ip do login atual
+        last_sign_in_ip: Up do último login
+        password: Senha
+        password_confirmation: Confirmação de senha
+        email: Email
+        first_name: Nome
+        last_name: Sobrenome
+        occupation: Profissão
+        phone: Telefone
+        birth_date: Data de nascimento
+        gender: Gênero
+        genders:
+          male: Masculino
+          female: Feminino
+          other: Outros
+        height: Altura
+        weight: Peso
+        physical_activities: Atividades Físicas
+        smoke_frequency: Quantidade de cigarros por dia
+        smoke: Fumante?
+        drink: Bebe?
+        drink_frequency: Frequencia do consumo de bebida
+        family_diseases: Histórico de doenças na família
+        medicines: Medicamentos atualmente utilizados
+        daily_water_quantity: Frequencia do consumo de água
+        favorite_dishes: Pratos favoritos
+        disliked_dishes: Pratos que não gosta
+        chew: Mastigação
+        chews:
+          slow: Devagar
+          medium: Medio
+          fast: Rápida

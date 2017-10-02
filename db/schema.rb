@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170922013724) do
+ActiveRecord::Schema.define(version: 20170928222814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,12 @@ ActiveRecord::Schema.define(version: 20170922013724) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "profissionals", force: :cascade do |t|
+  create_table "events_professionals", force: :cascade do |t|
+    t.integer "professional_id"
+    t.integer "event_id"
+  end
+
+  create_table "professionals", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -44,8 +49,15 @@ ActiveRecord::Schema.define(version: 20170922013724) do
     t.integer "experience_years"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_profissionals_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_profissionals_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_professionals_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_professionals_on_reset_password_token", unique: true
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

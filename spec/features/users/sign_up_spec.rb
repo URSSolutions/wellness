@@ -27,26 +27,26 @@ RSpec.feature "User sign up", type: :feature do
     visit "/users/sign_up"
 
     fill_in "Email", with: email
-    fill_in "Password", with: password
-    fill_in "Password confirmation", with: password
-    fill_in "First name", with: first_name
-    fill_in "Last name", with: last_name
-    fill_in "Occupation", with: occupation
-    fill_in "Phone", with: phone
-    CapybaraHelpers.select_date page, birth_date, from: 'user_birth_date'
+    fill_in "Senha", with: password
+    fill_in "Confirmação de senha", with: password
+    fill_in "Nome", with: first_name
+    fill_in "Sobrenome", with: last_name
+    fill_in "Profissão", with: occupation
+    fill_in "Telefone", with: phone
+    fill_in "user_birth_date", with: birth_date
     find(:id, 'user_gender').find(:option, gender).select_option
-    fill_in "Height", with: height
-    fill_in "Weight", with: weight
-    fill_in "Physical activities", with: physical_activities
+    fill_in "Altura", with: height
+    fill_in "Peso", with: weight
+    fill_in "Atividades Físicas", with: physical_activities
     find(:id, "user_smoke").set(smoke)
-    fill_in "Smoke frequency", with: smoke_frequency
+    fill_in "Quantidade de cigarros por dia", with: smoke_frequency
     find(:id, "user_drink").set(drink)
-    fill_in "Drink frequency", with: drink_frequency
-    fill_in "Family diseases", with: family_diseases
-    fill_in "Medicines", with: medicines
-    fill_in "Daily water quantity", with: daily_water_quantity
-    fill_in "Favorite dishes", with: favorite_dishes
-    fill_in "Disliked dishes", with: disliked_dishes
+    fill_in "Frequencia do consumo de bebida", with: drink_frequency
+    fill_in "Histórico de doenças na família", with: family_diseases
+    fill_in "Medicamentos atualmente utilizados", with: medicines
+    fill_in "Frequencia do consumo de água", with: daily_water_quantity
+    fill_in "Pratos favoritos", with: favorite_dishes
+    fill_in "Pratos que não gosta", with: disliked_dishes
     find(:id, 'user_chew').find(:option, chew).select_option
 
     click_button "Sign up"

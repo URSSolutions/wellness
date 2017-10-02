@@ -1,0 +1,18 @@
+.checkout {
+  text-align: center;
+  width: 90vw;
+  margin: 5vw;
+
+  @include tablet {
+    max-width: 30vw;
+    margin-left: 35vw;
+  }
+
+  &__title {
+    padding-top: 20px;
+  }
+
+  &__description {
+    padding-top: 50px;
+  }
+}
