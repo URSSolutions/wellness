@@ -7,7 +7,7 @@ const Header = (props) => {
   return (
     <section>
       <header className="shared-header">
-          <h1 className="shared-header__title"> Weelness </h1>
+          <h1 className="shared-header__title"> Wellness </h1>
 
           <span
             className="shared-header__logout"
