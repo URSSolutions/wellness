@@ -1,11 +1,14 @@
 language: ruby
 cache:
-  - bundler
+- bundler
 before_script:
-  - bundle exec rake db:create
-  - bundle exec rake db:migrate
-  - bundle exec rake assets:precompile
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+- bundle exec rake assets:precompile
 deploy:
   provider: heroku
   api_key:
-    secure: "b0d0f2f0-9f40-44c9-81ea-b9ad0ad996bc"
+    secure: I9F+EzFjYW5Tw06XrN16nu5pyyKQuU0H205XQNYiBSAbP+5KIm3zaZpoi8cUUCm0zOChl438MJ4f1RLRBBfYVVFhpG56icodtUnaa4GUAPbFUuKSZJuydDPKm8DPMNcyr9KWWEL3kI0cMpqpR/i/1gv6AM45KJO09kd/q+6MFNr9cBe2OvGbOLbQplfH/TmZEi/0njfSX6wO4ubgOkat/FMs7PaJIVxoKwjo8lJQbwXQvGv5pUjqJpc0g8r8K/X49YaQ+Xak+LCIh13s8qWqKfEeSRUFERUMfjyxjqqgdu+RU4sZ2D7b1wAKVtc78GJ8iXuaOTZkcwbTlcUnX7vxNQv1+FHRPK3yQu35rfaArwv/+sft47SpiXb8NjKKbRgHasjBmXQqDoxNEugDX4xjogp3KpQnCXqRgb8PfWNzWbxgR869X7Xz8djDWNIvk5wBUA5I7AjiK6I4vQ5I4+g1hGpZfsEA0tyg2TRLu5i2prsb7lXCmUAlDx0OvsC2HwYMSAvLTpeKhK7+oerpo/Xo7ZIJQ4PMqOtiyXBR7DEDHGxVsAxdGtDvPlfGFFuA3LaW+FdIZeB24e7XY5T74nOVeq6OUSpVhCv9kLHtuhTJ2Ks9G3NKpdy8i7sm4aC1ny2OYn4hR8NIlmthrh6IBrMymXF2NtkmK8B3Wr/ZrNl4A9g=
+  app: wellness-plataform
+  on:
+    repo: URSSolutions/wellness
