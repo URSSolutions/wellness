@@ -28,16 +28,16 @@ pt-BR:
           male: Masculino
           female: Feminino
           other: Outros
-        height: Idade
+        height: Altura
         weight: Peso
         physical_activities: Atividades Físicas
         smoke_frequency: Quantidade de cigarros por dia
         smoke: Fumante?
         drink: Bebe?
-        drink_frequency: Frenquencia do consumo de bebida
-        family_diseases: Historico de doenças na família
+        drink_frequency: Frequencia do consumo de bebida
+        family_diseases: Histórico de doenças na família
         medicines: Medicamentos atualmente utilizados
-        daily_water_quantity: Frenquencia do consumo de água
+        daily_water_quantity: Frequencia do consumo de água
         favorite_dishes: Pratos favoritos
         disliked_dishes: Pratos que não gosta
         chew: Mastigação
