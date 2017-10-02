@@ -1,15 +1,17 @@
-<div class="navbar-fixed">
-   <nav>
-     <div class="nav-wrapper red darken-3">
-       <% if flash[:notice] %>
-       <div class="notice"><%= flash[:notice] %></div>
-       <% end %>
-       <% if flash[:error] %>
-       <div class="notice"><%= flash[:error] %></div>
-       <% end %>
-     </div>
-   </nav>
- </div>
+<% if flash[:notice] || flash[:error] %>
+  <div class="navbar-fixed">
+     <nav>
+       <div class="nav-wrapper red darken-3">
+        <% if flash[:notice] %>
+          <div class="notice"><%= flash[:notice] %></div>
+        <% end %>
+        <% if flash[:error] %>
+          <div class="notice"><%= flash[:error] %></div>
+          <% end %>
+       </div>
+     </nav>
+   </div>
+ <% end %>
 
 <header class="header">
   <div>
@@ -87,15 +89,17 @@
             <p> <strong> Quantidade de vagas: </strong> 1/<%= event.max_attendees %> </p>
           </div>
 
-          <div class="events__professional">
-            <div class="events__professional-image"> </div>
+          <% event.professionals.each do |professional| %>
+            <div class="events__professional">
+              <div class="events__professional-image"> </div>
 
-            <div class="events__professional-text">
-              <h4> professional name </h4>
+              <div class="events__professional-text">
+                <h4><%= professional.full_name %></h4>
 
-              <p> Nutricionista topper </p>
+                <p><%= professional.formation %></p>
+              </div>
             </div>
-          </div>
+          <% end %>
         </div>
       </div>
 
