@@ -1,5 +1,6 @@
 class Api::ActivitiesController < Api::BaseController
   before_action :load_activity, except: [:index, :create]
+  before_action :authenticate_user!
 
   def index
     render json: current_user.activities
