@@ -5,4 +5,8 @@ class UserSerializer < ApplicationSerializer
              :smoke_frequency, :drink, :drink_frequency, :family_diseases,
              :medicines, :daily_water_quantity, :favorite_dishes,
              :disliked_dishes, :chew
+
+  has_many :feedbacks
+  has_many :events
+  has_many :activities
 end
