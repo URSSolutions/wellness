@@ -7,4 +7,8 @@ class User < ApplicationRecord
 
   enum gender: [:male, :female, :other]
   enum chew: [:slow, :medium, :fast]
+
+  def full_name
+    "#{first_name} #{last_name}"  
+  end
 end
