@@ -1,6 +1,7 @@
 class Professional < ApplicationRecord
   devise :database_authenticatable, :rememberable, :trackable, :validatable
 
+  has_many :feedbacks
   has_and_belongs_to_many :events
 
   validates_presence_of :occupation, :first_name, :last_name, :experience_years
