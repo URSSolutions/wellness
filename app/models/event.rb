@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   has_many :subscriptions
   has_many :activities
+  has_many :feedbacks
   has_many :users, through: :subscription
   has_and_belongs_to_many :professionals
 
