@@ -3,5 +3,4 @@ class EventSerializer < ApplicationSerializer
              :final_date, :price, :created_at, :updated_at
 
   has_many :professionals
-  has_many :activities
 end
