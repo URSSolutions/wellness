@@ -1,7 +1,11 @@
 import * as TYPES from '../actions/types'
 
 const DEFAULT_STATE = {
-  currentAuth: {},
+  currentAuth: {
+    events: [],
+    feedbacks: [],
+    activities: []
+  },
   error: null
 }
 
