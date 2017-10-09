@@ -21,9 +21,9 @@ class Api::ActivitiesController < Api::BaseController
 
   def update
     if @activity.update(activity_params)
-      render json: activity
+      render json: @activity
     else
-      render json: activity.errors, status: :bad_request
+      render json: @activity.errors, status: :bad_request
     end
   end
 

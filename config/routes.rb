@@ -23,5 +23,6 @@ Rails.application.routes.draw do
       get '/', to: 'activities#index'
       get '/:id', to: 'activities#show'
     end
+    resources :feedbacks, except: [:new, :edit]
   end
 end
