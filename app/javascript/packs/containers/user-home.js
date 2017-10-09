@@ -3,41 +3,35 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from '../actions/auth'
+import * as activityActions from '../actions/activity'
+import * as professinalActions from '../actions/professional'
 
-import ReportModal from '../components/report-modal'
+import ActivityModal from '../components/activity-modal'
+import LastFeedback from '../components/last-feedback'
+import Activities from '../components/activities'
 
 class UserHome extends Component {
   constructor (props) {
     super(props)
 
-    this.state = { reportModal: false }
+    this.state = { activityModal: false }
 
-    this.toggleModal = this.toggleModal.bind(this)
-    this.renderNotification = this.renderNotification.bind(this)
+    this.toogleActivityModal = this.toogleActivityModal.bind(this)
+    this.handleFetchProfessional = this.handleFetchProfessional.bind(this)
   }
 
-  toggleModal () {
-    this.setState({ reportModal: !this.state.reportModal })
+  componentDidMount () {
+    this.props.fetchAuth()
   }
 
-  renderNotification () {
-    const { feedback } = this.props
-
-    if (feedback.error) {
-      return <p> { feedback.error } </p>
-    }
-
-    if (feedback.feedbacks.length) {
-      return this.createNotificationCard(feedback.feedbacks[length-1])
-    }
+  toogleActivityModal () {
+    this.setState({ activityModal: !this.state.activityModal })
   }
 
-  createNotificationCard () {
-    return (
-      <div>
+  handleFetchProfessional () {
+    const { fetchProfessional, events } = this.props
 
-      </div>
-    )
+    fetchProfessional(events[0].id)
   }
 
   render () {
@@ -46,41 +40,64 @@ class UserHome extends Component {
     return (
       <section className='user-home'>
         {
-          state.reportModal &&
-          <ReportModal handleClose={ this.toggleModal } />
+          state.activityModal &&
+          <ActivityModal handleClose={ this.toggleModal } />
         }
 
-        <h2 className='user-home__name'> Olá, { props.auth.name } </h2>
+        <h2 className='user-home__name'> Olá, { props.auth.first_name } </h2>
 
+        <h2 className='user-home__name'>  Evento: </h2>
         {
-          props.auth.event.name &&
-          <h3 className='user-home__event-name' > { props.auth.event.name } </h3>
+          props.events.length &&
+          <h2 className='user-home__event-name' > { props.events[0].name } </h2>
         }
 
         {
-          this.renderNotification()
+          props.feedbacks && props.events.length &&
+          <LastFeedback
+            professional={props.professional}
+            feedbacks={ props.feedbacks }
+            handleFetchProfessional={ this.handleFetchProfessional }
+          />
         }
 
-        <button onClick={ this.toggleModal }> Reportar o status de hoje </button>
-
         {
-          state.reportModal &&
-          <ReportModal handleClose={ this.toggleModal } />
+          props.activities &&
+          <Activities
+            activities={ props.activities }
+            toogleActivityModal={ this.toogleActivityModal }
+          />
         }
       </section>
     )
   }
 }
 
+UserHome.propTypes = {
+  auth: PropTypes.object.isRequired,
+  events: PropTypes.array.isRequired,
+  feedbacks: PropTypes.array.isRequired,
+  activities: PropTypes.array.isRequired,
+  fetchAuth: PropTypes.func.isRequired,
+  fetchProfessional: PropTypes.func.isRequired
+}
+
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth,
-    feedback: state.feedback
+    auth: state.auth.currentAuth,
+    events: state.auth.currentAuth.events,
+    feedbacks: state.auth.currentAuth.feedbacks,
+    activities: state.auth.currentAuth.activities,
+    professional: state.professional.currentProfessional
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(authActions, dispatch)
+  return bindActionCreators({
+    ...authActions,
+    ...activityActions,
+    ...professinalActions
+  }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserHome)
