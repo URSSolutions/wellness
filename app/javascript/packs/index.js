@@ -14,10 +14,12 @@ import {
 import Root from './containers/root'
 import { auth } from './reducers/auth'
 import { feedback } from './reducers/feedback'
+import { activity } from './reducers/activity'
 
 const reducers = combineReducers({
   auth,
-  feedback
+  feedback,
+  activity
 })
 
 const enhancer = compose(
