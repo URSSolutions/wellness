@@ -1,22 +1,22 @@
 import * as TYPES from './types'
 import API from '../services/api'
 
-export const fetchFeedbacks = () => {
+export const fetchFeedbacks = (id) => {
   return (dispatch) => {
-    API.get('/users/sign_out')
-      .then(() => dispatch(fetchFeedbackSuccess()))
-      .catch((error) => dispatch(fetchFeedbackError(error)))
+    API.get(`/api/feedbacks/${id}`)
+      .then(() => dispatch(fetchFeedbacksSuccess()))
+      .catch((error) => dispatch(fetchFeedbacksError(error)))
   }
 }
 
-const fetchFeedbackSuccess = (feedbacks) => {
+const fetchFeedbacksSuccess = (feedbacks) => {
   return {
     type: TYPES.FETCH_FEEDBACKS_SUCCESS,
     feedbacks
   }
 }
 
-const fetchFeedbackError = (error) => {
+const fetchFeedbacksError = (error) => {
   return {
     type: TYPES.FETCH_FEEDBACKS_ERROR,
     error
