@@ -6,7 +6,7 @@ import Webcam from 'react-webcam'
 
 import PhotoModal from '../components/photo-modal'
 
-class ReportModal extends Component {
+class ActivityModal extends Component {
   constructor (props) {
     super(props)
 
@@ -63,8 +63,8 @@ class ReportModal extends Component {
   }
 }
 
-ReportModal.propTypes = {
+ActivityModal.propTypes = {
   handleClose: PropTypes.func.isRequired
 }
 
-export default ReportModal
+export default ActivityModal
