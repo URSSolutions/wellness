@@ -2,7 +2,7 @@ class Event < ApplicationRecord
   has_many :subscriptions
   has_many :activities
   has_many :feedbacks
-  has_many :users, through: :subscription
+  has_many :users, through: :subscriptions
   has_and_belongs_to_many :professionals
 
   validates_presence_of :name, :max_attendees, :description, :initial_date, :final_date, :price
