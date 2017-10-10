@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { formatDate } from '../services/format-date'
 
 const FeedbackCard = ({ feedback, professional }) => {
   return (
@@ -7,7 +8,7 @@ const FeedbackCard = ({ feedback, professional }) => {
       <div className='card-content'>
         <h3> { professional.name } </h3>
 
-        <p className='user-home__feedback-date'> { feedback.created_at } </p>
+        <p className='user-home__feedback-date'> { formatDate(feedback.created_at) } </p>
 
         <p> { feedback.description } </p>
       </div>

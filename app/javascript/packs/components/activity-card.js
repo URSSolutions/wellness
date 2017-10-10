@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { formatDate } from '../services/format-date'
 
 const handlePhoto = (activity) => {
   const photos = {
@@ -25,7 +26,7 @@ const ActivityCard = ({ activity }) => {
       <div className='card-content'>
         <p> { activity.category } </p>
 
-        <p> { activity.created_at } </p>
+        <p> { formatDate(activity.created_at) } </p>
 
         <p> { activity.description } </p>
       </div>
