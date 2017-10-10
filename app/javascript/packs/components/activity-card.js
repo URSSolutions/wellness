@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 const handlePhoto = (activity) => {
   const photos = {
-    meal: activity.photo || 'http://www.fairfaxcounty.gov/news2/wp-content/uploads/2016/05/meal.jpg',
-    physical: 'https://az616578.vo.msecnd.net/files/2016/03/01/635924574014208042697820024_Exercising.jpg'
+    meal: activity.photo || '/assets/meal-ad180f8a15f51e68bccb4eb4438b5e8c891405b60b3bb40dc6992b9fc44c45d6.jpg',
+    physical: '/assets/physical-3a131f2ea49f01c63207474461c187251ead55580f4ce11918adcafef1f38305.jpg'
   }
 
   return photos[activity.category]
