@@ -1,12 +1,23 @@
 import * as TYPES from '../actions/types'
 
-export const activity = (state = {}, action) => {
+const DEFAULT_STATE = {
+  activityCreated: {},
+  error: null
+}
+
+export const activity = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case TYPES.ADD_ACTIVITY_SUCCESS:
-      return action.activityCreated
+      return {
+        activityCreated: action.activityCreated,
+        error: null
+      }
 
     case TYPES.ADD_ACTIVITY_ERROR:
-      return {}
+      return {
+        activityCreated: {},
+        error: action.error
+      }
 
     default:
       return state

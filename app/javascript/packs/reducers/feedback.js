@@ -1,12 +1,23 @@
 import * as TYPES from '../actions/types'
 
-export const feedback = (state = {}, action) => {
+const DEFAULT_STATE = {
+  feedbackCreated: {},
+  error: null
+}
+
+export const feedback = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case TYPES.ADD_FEEDBACK_SUCCESS:
-      return action.feedbackCreated
+      return {
+        feedbackCreated: action.feedbackCreated,
+        error: null
+      }
 
     case TYPES.ADD_FEEDBACK_ERROR:
-      return {}
+      return {
+        feedbackCreated: {},
+        error: action.error
+      }
 
     default:
       return state

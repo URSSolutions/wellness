@@ -1,9 +1,9 @@
 import * as TYPES from './types'
 import API from '../services/api'
 
-export const addFeedback = (id) => {
+export const addFeedback = () => {
   return (dispatch) => {
-    API.get(`/api/feedbacks/${id}`)
+    API.get('/api/feedbacks/')
       .then((response) => dispatch(addFeedbackSuccess(response.data)))
       .catch((error) => dispatch(addFeedbackError(error)))
   }

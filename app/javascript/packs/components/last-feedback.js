@@ -18,7 +18,7 @@ class LastFeedback extends Component {
     const { feedbacks, professional } = this.props
 
     if (feedbacks.length) {
-      return <FeedbackCard professional={ professional } feedback={ feedbacks[feedbacks.length -1] } />
+      return <FeedbackCard professional={ professional } feedback={ feedbacks[feedbacks.length - 1] } />
     }
 
     return <p> Você não tem nenhum feedback ainda! </p>

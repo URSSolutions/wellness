@@ -51,7 +51,7 @@ class ActivityModal extends Component {
               state.photo &&
               <img
                 src={ state.photo }
-                alt={ 'Foto tirada da refeição' }
+                alt='Foto tirada da refeição'
               />
             }
 

@@ -29,7 +29,7 @@ class PhotoModal extends Component {
             height={ 350 }
             width={ 350 }
             ref={ (node) => this.webcam = node }
-            screenshotFormat="image/jpeg"
+            screenshotFormat='image/jpeg'
           />
 
           <button onClick={ this.takePhoto }> Tirar Foto </button>
