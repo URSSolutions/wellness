@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from '../actions/auth'
-import * as activityActions from '../actions/activity'
 import * as professinalActions from '../actions/professional'
 
 import ActivityModal from '../components/activity-modal'
@@ -95,7 +94,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     ...authActions,
-    ...activityActions,
     ...professinalActions
   }, dispatch)
 }
