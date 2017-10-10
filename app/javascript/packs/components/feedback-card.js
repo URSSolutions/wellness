@@ -16,7 +16,8 @@ const FeedbackCard = ({ feedback, professional }) => {
 }
 
 FeedbackCard.propTypes = {
-  feedback: PropTypes.object.isRequired
+  feedback: PropTypes.object.isRequired,
+  professional: PropTypes.object.isRequired,
 }
 
 export default FeedbackCard

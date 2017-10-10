@@ -40,7 +40,8 @@ class PhotoModal extends Component {
 }
 
 PhotoModal.propTypes = {
-  handleClose: PropTypes.func.isRequired
+  handleClose: PropTypes.func.isRequired,
+  handlePhoto: PropTypes.func.isRequired
 }
 
 export default PhotoModal
