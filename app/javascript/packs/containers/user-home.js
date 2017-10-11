@@ -13,18 +13,11 @@ class UserHome extends Component {
   constructor (props) {
     super(props)
 
-    this.state = { activityModal: false }
-
-    this.toogleActivityModal = this.toogleActivityModal.bind(this)
     this.handleFetchProfessional = this.handleFetchProfessional.bind(this)
   }
 
   componentDidMount () {
     this.props.fetchAuth()
-  }
-
-  toogleActivityModal () {
-    this.setState({ activityModal: !this.state.activityModal })
   }
 
   handleFetchProfessional () {
@@ -38,16 +31,14 @@ class UserHome extends Component {
 
     return (
       <section className='user-home'>
-        {
-          state.activityModal &&
-          <ActivityModal handleClose={ this.toggleModal } />
-        }
+        <ActivityModal addActivity={ this.handleAddActivity } />
 
         <div className='user-home__general-info'>
           <div>
             <h2 className='user-home__name'> Olá, { props.auth.first_name } </h2>
 
             <h2 className='user-home__name'> Evento: </h2>
+
             {
               props.events.length &&
               <h2 className='user-home__event-name' > { props.events[0].name } </h2>
