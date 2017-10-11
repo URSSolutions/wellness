@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   namespace :api, path: '/api' do
     get '/self', to: 'meta#myself'
+    get '/professionals/events', to: 'professionals#events'
 
     resources :feedbacks, except: [:new, :edit]
     resources :activities, except: [:new, :edit]
