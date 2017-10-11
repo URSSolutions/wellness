@@ -4,15 +4,42 @@
   padding-left: 10px;
   padding-right: 10px;
 
+  @include tablet {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 30px;
+  }
+
   &__name {
     font-size: 2rem;
     margin-top: 15px;
     margin-bottom: 15px;
+
+    @include tablet {
+      font-size: 2.3rem;
+    }
+
+    @include desktop {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__general-info {
+
+    @include desktop {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
   }
 
   &__feedback-card.card.small {
     height: 200px;
     font-size: 1.2rem;
+
+    @include tablet {
+      width: 500px;
+    }
 
     .user-home__feedback-date {
       margin-top: 10px;
@@ -31,11 +58,34 @@
     text-transform: uppercase;
     margin-top: 15px;
     margin-bottom: 30px;
+
+    @include tablet {
+      text-align: left;
+      font-size: 2.2rem;
+    }
   }
 
   &__activity-container {
     margin-top: 10px;
     margin-bottom: 10px;
+  }
+
+  &__activities {
+
+    @include tablet {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__activity-button {
+
+    @include tablet {
+      background: none;
+      border: none;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
   }
 
   &__activity-add {
@@ -51,6 +101,17 @@
   &__activity-card.card.small {
     height: 270px;
     font-size: 1.2rem;
+
+    @include tablet {
+      margin-left: 10px;
+      margin-right: 10px;
+      width: 300px;
+    }
+
+    @include desktop {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
 
     .user-home__activity-card-title {
       padding: 9px;
