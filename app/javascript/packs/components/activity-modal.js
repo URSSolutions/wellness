@@ -46,7 +46,7 @@ class ActivityModal extends Component {
   }
 
   handleSubmit () {
-    console.log(this.state)
+    this.props.addActivity(this.state)
 
     this.resetState()
   }
@@ -124,6 +124,10 @@ class ActivityModal extends Component {
       </div>
     )
   }
+}
+
+ActivityModal.propTypes = {
+  addActivity: PropTypes.func.isRequired
 }
 
 export default ActivityModal

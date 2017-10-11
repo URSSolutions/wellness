@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from '../actions/auth'
 import * as professinalActions from '../actions/professional'
+import * as activityActions from '../actions/activity'
 
 import ActivityModal from '../components/activity-modal'
 import LastFeedback from '../components/last-feedback'
@@ -14,6 +15,7 @@ class UserHome extends Component {
     super(props)
 
     this.handleFetchProfessional = this.handleFetchProfessional.bind(this)
+    this.handleAddActivity = this.handleAddActivity.bind(this)
   }
 
   componentDidMount () {
@@ -24,6 +26,13 @@ class UserHome extends Component {
     const { fetchProfessional, events } = this.props
 
     fetchProfessional(events[0].id)
+  }
+
+  handleAddActivity (activity) {
+    const { addActivity, events } = this.props
+    const event_id = events[0].id
+
+    addActivity({ ...activity, event_id })
   }
 
   render () {
@@ -73,7 +82,8 @@ UserHome.propTypes = {
   feedbacks: PropTypes.array.isRequired,
   activities: PropTypes.array.isRequired,
   fetchAuth: PropTypes.func.isRequired,
-  fetchProfessional: PropTypes.func.isRequired
+  fetchProfessional: PropTypes.func.isRequired,
+  addActivity: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => {
@@ -89,7 +99,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     ...authActions,
-    ...professinalActions
+    ...professinalActions,
+    ...activityActions
   }, dispatch)
 }
 
