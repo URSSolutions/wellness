@@ -6,7 +6,7 @@ const FeedbackCard = ({ feedback, professional }) => {
   return (
     <div className='card small user-home__feedback-card'>
       <div className='card-content'>
-        <h3> { professional.name } </h3>
+        <h3> { professional.first_name } </h3>
 
         <p className='user-home__feedback-date'> { formatDate(feedback.created_at) } </p>
 
