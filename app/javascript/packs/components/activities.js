@@ -18,7 +18,7 @@ const Activities = ({ activities, toogleActivityModal }) => {
     <div className='user-home__activity-container'>
       <h2> Atividades: </h2>
 
-      <button onClick={ toogleActivityModal }>
+      <button className='user-home__activity-button' onClick={ toogleActivityModal }>
         <span className="user-home__activity-add"> Enviar nova atividade </span>
 
         <div className="btn-floating btn-large waves-effect waves-light red">
@@ -26,7 +26,9 @@ const Activities = ({ activities, toogleActivityModal }) => {
         </div>
       </button>
 
-      { renderActivities() }
+      <div className='user-home__activities'>
+        { renderActivities() }
+      </div>
     </div>
   )
 }

@@ -43,22 +43,26 @@ class UserHome extends Component {
           <ActivityModal handleClose={ this.toggleModal } />
         }
 
-        <h2 className='user-home__name'> Olá, { props.auth.first_name } </h2>
+        <div className='user-home__general-info'>
+          <div>
+            <h2 className='user-home__name'> Olá, { props.auth.first_name } </h2>
 
-        <h2 className='user-home__name'>  Evento: </h2>
-        {
-          props.events.length &&
-          <h2 className='user-home__event-name' > { props.events[0].name } </h2>
-        }
+            <h2 className='user-home__name'> Evento: </h2>
+            {
+              props.events.length &&
+              <h2 className='user-home__event-name' > { props.events[0].name } </h2>
+            }
+          </div>
 
-        {
-          props.feedbacks && props.events.length &&
-          <LastFeedback
-            professional={props.professional}
-            feedbacks={ props.feedbacks }
-            handleFetchProfessional={ this.handleFetchProfessional }
-          />
-        }
+          {
+            props.feedbacks && props.events.length &&
+            <LastFeedback
+              professional={props.professional}
+              feedbacks={ props.feedbacks }
+              handleFetchProfessional={ this.handleFetchProfessional }
+            />
+          }
+        </div>
 
         {
           props.activities &&
