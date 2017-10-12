@@ -5,7 +5,7 @@ export const fetchProfessional = (id) => {
   return (dispatch) => {
     return API.get(`/api/events/${id}`)
       .then((response) => {
-        dispatch(fetchProfessionalSuccess({ name: 'Jorge' }))
+        dispatch(fetchProfessionalSuccess(response.data.professionals[0]))
       })
       .catch((error) => dispatch(fetchProfessionalError(error)))
   }
