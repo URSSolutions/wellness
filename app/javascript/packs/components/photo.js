@@ -27,27 +27,47 @@ class Photo extends Component {
         {
           !props.photo &&
           <div>
-            <Webcam
-              audio={ false }
-              height={ 200 }
-              width={ 200 }
-              ref={ (node) => this.webcam = node }
-              screenshotFormat='image/jpeg'
-            />
+            <div className='row'>
+              <div className='field col s12 offset-m2 m8'>
+                <Webcam
+                  audio={ false }
+                  height={ '100%' }
+                  width={ '100%' }
+                  ref={ (node) => this.webcam = node }
+                  screenshotFormat='image/jpeg'
+                />
+              </div>
+            </div>
 
-            <button onClick={ this.takePhoto }> Tirar foto </button>
+            <div className='row'>
+              <div className='field col s12'>
+                <button className='user-home__photo-shoot' onClick={ this.takePhoto }>
+                  <i className="material-icons"> add_a_photo </i> Tirar foto
+                </button>
+              </div>
+            </div>
           </div>
         }
 
         {
           props.photo &&
           <div>
-            <img
-              src={ props.photo }
-              alt='Foto tirada da refeição'
-            />
+            <div className='row'>
+              <div className='field col s12 offset-m2 m8'>
+                <img
+                  src={ props.photo }
+                  alt='Foto tirada da refeição'
+                />
+              </div>
+            </div>
 
-            <button onClick={ this.resetPhoto }> Tirar outra foto </button>
+            <div className='row'>
+              <div className='field col s12'>
+                <button className='user-home__photo-shoot' onClick={ this.resetPhoto }>
+                  <i className="material-icons"> add_a_photo </i> Tirar outra foto
+                </button>
+              </div>
+            </div>
           </div>
         }
       </div>
