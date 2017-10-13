@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from '../actions/auth'
 import * as professinalActions from '../actions/professional'
+import * as activityActions from '../actions/activity'
 
 import ActivityModal from '../components/activity-modal'
 import LastFeedback from '../components/last-feedback'
@@ -13,18 +14,12 @@ class UserHome extends Component {
   constructor (props) {
     super(props)
 
-    this.state = { activityModal: false }
-
-    this.toogleActivityModal = this.toogleActivityModal.bind(this)
     this.handleFetchProfessional = this.handleFetchProfessional.bind(this)
+    this.handleAddActivity = this.handleAddActivity.bind(this)
   }
 
   componentDidMount () {
     this.props.fetchAuth()
-  }
-
-  toogleActivityModal () {
-    this.setState({ activityModal: !this.state.activityModal })
   }
 
   handleFetchProfessional () {
@@ -33,21 +28,26 @@ class UserHome extends Component {
     fetchProfessional(events[0].id)
   }
 
+  handleAddActivity (activity) {
+    const { addActivity, events } = this.props
+    const event_id = events[0].id
+
+    addActivity({ ...activity, event_id })
+  }
+
   render () {
     const { state, props } = this
 
     return (
       <section className='user-home'>
-        {
-          state.activityModal &&
-          <ActivityModal handleClose={ this.toggleModal } />
-        }
+        <ActivityModal addActivity={ this.handleAddActivity } />
 
         <div className='user-home__general-info'>
           <div>
             <h2 className='user-home__name'> Olá, { props.auth.first_name } </h2>
 
             <h2 className='user-home__name'> Evento: </h2>
+
             {
               props.events.length &&
               <h2 className='user-home__event-name' > { props.events[0].name } </h2>
@@ -82,7 +82,8 @@ UserHome.propTypes = {
   feedbacks: PropTypes.array.isRequired,
   activities: PropTypes.array.isRequired,
   fetchAuth: PropTypes.func.isRequired,
-  fetchProfessional: PropTypes.func.isRequired
+  fetchProfessional: PropTypes.func.isRequired,
+  addActivity: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => {
@@ -98,7 +99,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     ...authActions,
-    ...professinalActions
+    ...professinalActions,
+    ...activityActions
   }, dispatch)
 }
 

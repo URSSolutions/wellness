@@ -1,9 +1,9 @@
 import * as TYPES from './types'
 import API from '../services/api'
 
-export const addActivity = () => {
+export const addActivity = (activity) => {
   return (dispatch) => {
-    API.post('/api/activities/')
+    return API.post('/api/activities/', activity)
       .then((response) => dispatch(addActivitySuccess(response.data)))
       .catch((error) => dispatch(addActivityError(error)))
   }

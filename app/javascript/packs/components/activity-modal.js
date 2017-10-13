@@ -1,35 +1,63 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { ModalContainer, ModalDialog } from 'react-modal-dialog'
 import Webcam from 'react-webcam'
 
-import PhotoModal from '../components/photo-modal'
+import Photo from '../components/photo'
 
 class ActivityModal extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      photoModal: false,
-      photo: ''
+      photo: '',
+      name: '',
+      category: '',
+      description: ''
     }
 
-    this.takePhoto = this.takePhoto.bind(this)
-    this.toggleModal = this.toggleModal.bind(this)
     this.handlePhoto = this.handlePhoto.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.resetState = this.resetState.bind(this)
   }
 
-  takePhoto () {
-    this.webcam.getScreenshot()
+  handleChange (event) {
+    const { name, value } = event.target
+
+    if (name === 'category') {
+      return this.setState({
+        category: value,
+        photo: '',
+        name: '',
+        description: ''
+      })
+    }
+
+    this.setState({ [name]: value })
   }
 
-  toggleModal () {
-    this.setState({ photoModal: !this.state.photoModal })
-  }
+  handlePhoto (photo = '') {
+    if (!photo) {
+      return this.setState({ photo: '' })
+    }
 
-  handlePhoto (photo) {
     this.setState({ photo })
+  }
+
+  handleSubmit () {
+    this.props.addActivity(this.state)
+
+    this.resetState()
+  }
+
+  resetState () {
+    this.setState({
+      photo: '',
+      name: '',
+      category: '',
+      description: ''
+    })
   }
 
   render () {
@@ -37,34 +65,69 @@ class ActivityModal extends Component {
 
     return (
       <div>
-        <ModalContainer onClose={ props.handleClose }>
-          <ModalDialog onClose={ props.handleClose }>
-            {
-              state.photoModal &&
-              <PhotoModal
-                handleClose={ this.toggleModal }
-                handlePhoto={ this.handlePhoto }
-              />
-            }
+       <div id='modal1' className='modal'>
+         <div className='modal-content'>
+           <div className='row'>
+             <div className='input col s12'>
 
-            {
-              state.photo &&
-              <img
-                src={ state.photo }
-                alt='Foto tirada da refeição'
-              />
-            }
+               <label htmlFor='category'> Categoria </label>
 
-            <button onClick={ this.toggleModal }> Enviar foto da refeição </button>
-          </ModalDialog>
-        </ModalContainer>
+               <select
+                 className='browser-default'
+                 name='category'
+                 id='category'
+                 value={ state.category }
+                 onChange={ this.handleChange }>
+
+                 <option value=''> </option>
+                 <option value='meal'> Refeição </option>
+                 <option value='physical'> Exercício </option>
+                 <option value='weight'> Peso </option>
+               </select>
+             </div>
+           </div>
+
+           {
+             state.category && state.category !== 'weight' &&
+             <div className='row'>
+               <div className='field col s12'>
+                 <label htmlFor='name'> Nome </label>
+
+                 <input name='name' id='name' value={ state.name } onChange={ this.handleChange } />
+               </div>
+             </div>
+           }
+
+           {
+             state.category &&
+             <div className='row'>
+               <div className='field col s12'>
+                 <label htmlFor='description'> { state.category === 'weight'? 'Peso': 'Descrição' } </label>
+
+                 <textarea name='description' id='description' value={ state.description } onChange={ this.handleChange } />
+               </div>
+             </div>
+           }
+
+           {
+            state.category === 'meal' &&
+            <Photo handlePhoto={ this.handlePhoto } photo={ state.photo } />
+           }
+         </div>
+
+         <div className='modal-footer'>
+           <a href='#!' onClick={ this.resetState } className='modal-action modal-close waves-effect btn-flat '> Cancelar </a>
+
+           <a href='#!' onClick={ this.handleSubmit } className='modal-action modal-close waves-effect btn-flat'> Enviar </a>
+         </div>
+       </div>
       </div>
     )
   }
 }
 
 ActivityModal.propTypes = {
-  handleClose: PropTypes.func.isRequired
+  addActivity: PropTypes.func.isRequired
 }
 
 export default ActivityModal

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import ActivityCard from '../components/activity-card'
 
-const Activities = ({ activities, toogleActivityModal }) => {
+const Activities = ({ activities }) => {
   const renderActivities = () => {
     if (activities.length) {
       return activities.map((activity, index) =>
@@ -18,13 +18,13 @@ const Activities = ({ activities, toogleActivityModal }) => {
     <div className='user-home__activity-container'>
       <h2> Atividades: </h2>
 
-      <button className='user-home__activity-button' onClick={ toogleActivityModal }>
+      <a className="modal-trigger" href="#modal1">
         <span className="user-home__activity-add"> Enviar nova atividade </span>
 
         <div className="btn-floating btn-large waves-effect waves-light red">
            <i className="material-icons">add</i>
         </div>
-      </button>
+      </a>
 
       <div className='user-home__activities'>
         { renderActivities() }
@@ -35,7 +35,6 @@ const Activities = ({ activities, toogleActivityModal }) => {
 
 Activities.propTypes = {
   activities: PropTypes.array.isRequired,
-  toogleActivityModal: PropTypes.func.isRequired
 }
 
 export default Activities
