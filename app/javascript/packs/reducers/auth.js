@@ -24,7 +24,7 @@ export const auth = (state = DEFAULT_STATE, action) => {
       }
 
     case TYPES.DISPATCH_AUTH_LOGOUT_SUCCESS:
-      return {}
+      return DEFAULT_STATE
 
     case TYPES.DISPATCH_AUTH_LOGOUT_ERROR:
       return {
