@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from '../actions/auth'
-import * as professinalActions from '../actions/professional'
+import * as professionalActions from '../actions/professional'
 import * as activityActions from '../actions/activity'
 
 import ActivityModal from '../components/activity-modal'
@@ -88,10 +88,10 @@ UserHome.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth.currentAuth,
-    events: state.auth.currentAuth.events,
-    feedbacks: state.auth.currentAuth.feedbacks,
-    activities: state.auth.currentAuth.activities,
+    auth: state.auth.currentUser,
+    events: state.auth.currentUser.events,
+    feedbacks: state.auth.currentUser.feedbacks,
+    activities: state.auth.currentUser.activities,
     professional: state.professional.currentProfessional
   }
 }
@@ -99,7 +99,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     ...authActions,
-    ...professinalActions,
+    ...professionalActions,
     ...activityActions
   }, dispatch)
 }
