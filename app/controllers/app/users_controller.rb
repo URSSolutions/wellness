@@ -1,6 +1,7 @@
 class App::UsersController < ApplicationController
-  before_action :authenticate_user!
-
   def app
+    unless current_user || current_professional
+      redirect_to '/'
+    end
   end
 end

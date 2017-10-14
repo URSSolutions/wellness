@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { verifyAuthType } from '../services/verify-auth-type'
-import { Redirect } from 'react-router'
 
 import App from './app'
 import UserHome from './user-home'
+import ProfessionalHome from './professional-home'
 
 const Root = ({ store }) => {
   return (
@@ -15,11 +15,6 @@ const Root = ({ store }) => {
       <Router>
         <div>
           <Route path='/' component={ App } />
-
-          {
-            verifyAuthType() &&
-            <Route path='/' component={ UserHome } />
-          }
         </div>
       </Router>
     </Provider>

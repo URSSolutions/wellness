@@ -5,16 +5,27 @@ export const fetchAuth = () => {
   return (dispatch) => {
     API.get('/api/self')
       .then((response) => {
-        dispatch(fetchAuthSuccess(response.data))
+        if (response.data.class_name === 'User') {
+          return dispatch(fetchUserSuccess(response.data))
+        }
+
+        dispatch(fetchProfessionalSuccess(response.data))
       })
       .catch((error) => dispatch(fetchAuthError(error)))
   }
 }
 
-const fetchAuthSuccess = (auth) => {
+const fetchUserSuccess = (user) => {
   return {
-    type: TYPES.FETCH_AUTH_SUCCESS,
-    auth
+    type: TYPES.FETCH_AUTH_USER_SUCCESS,
+    user
+  }
+}
+
+const fetchProfessionalSuccess = (professional) => {
+  return {
+    type: TYPES.FETCH_AUTH_PROFESSIONAL_SUCCESS,
+    professional
   }
 }
 
