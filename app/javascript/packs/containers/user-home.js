@@ -71,7 +71,7 @@ class UserHome extends Component {
           props.activities &&
           <Activities
             activities={ props.activities }
-            toogleActivityModal={ this.toogleActivityModal }
+            toggleActivityInput={ true }
           />
         }
       </section>
