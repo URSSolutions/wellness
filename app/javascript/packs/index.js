@@ -13,12 +13,14 @@ import {
 
 import Root from './components/root'
 import { auth } from './reducers/auth'
+import { events } from './reducers/events'
 import { feedback } from './reducers/feedback'
 import { activity } from './reducers/activity'
 import { professional } from './reducers/professional'
 
 const reducers = combineReducers({
   auth,
+  events,
   feedback,
   activity,
   professional
