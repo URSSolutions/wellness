@@ -1,5 +1,20 @@
-<header class="shared-header">
-  <div>
-    <h1 class="shared-header__title"> Wellness </h1>
-  </div>
-</header>
+<div>
+  <% flash.each do |key, value| %>
+    <div class="nav-wrapper red darken-3 flash-errors">
+      <a href="#" data-dismiss="alert"></a>
+      <ul>
+        <li>
+          <%= value %>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+
+  <header class="shared-header">
+    <div>
+      <a href="/">
+        <h1 class="shared-header__title"> Wellness </h1>
+      </a>
+    </div>
+  </header>
+</div>
