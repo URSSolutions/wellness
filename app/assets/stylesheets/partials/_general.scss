@@ -48,3 +48,14 @@ h4 {
   justify-content: center;
   align-items: center;
 }
+
+.flash-errors {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  letter-spacing: .5px;
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 6vh;
+}
