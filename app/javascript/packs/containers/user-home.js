@@ -20,6 +20,8 @@ class UserHome extends Component {
 
   componentDidMount () {
     this.props.fetchAuth()
+
+    $('.modal').modal()
   }
 
   handleFetchProfessional () {
