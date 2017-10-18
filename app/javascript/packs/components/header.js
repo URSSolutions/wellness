@@ -4,6 +4,11 @@ import { bindActionCreators } from 'redux'
 import * as authActions from '../actions/auth'
 
 const Header = (props) => {
+
+  const dispatchLogout = () => {
+    props.dispatchAuthLogout()
+  }
+
   return (
     <section>
       <header className="shared-header">
@@ -19,5 +24,8 @@ const Header = (props) => {
   )
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(authActions, dispatch)
+}
 
-export default Header
+export default connect(null, mapDispatchToProps)(Header)
