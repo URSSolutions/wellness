@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from '../actions/auth'
@@ -16,12 +17,16 @@ const Header = (props) => {
 
           <span
             className="shared-header__logout"
-            onClick={ props.dispatchLogout }>
+            onClick={ props.dispatchAuthLogout }>
               <i className="material-icons"> exit_to_app </i>
           </span>
       </header>
     </section>
   )
+}
+
+Header.propTypes = {
+  dispatchAuthLogout: PropTypes.func.isRequired
 }
 
 const mapDispatchToProps = (dispatch) => {
