@@ -17,7 +17,7 @@ export const auth = (state = DEFAULT_STATE, action) => {
     case TYPES.FETCH_AUTH_USER_SUCCESS:
       return {
         ...state,
-        currentAuth: action.user
+        currentUser: action.user
       }
 
     case TYPES.FETCH_AUTH_PROFESSIONAL_SUCCESS:

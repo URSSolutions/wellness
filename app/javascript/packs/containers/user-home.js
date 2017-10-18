@@ -20,6 +20,8 @@ class UserHome extends Component {
 
   componentDidMount () {
     this.props.fetchAuth()
+
+    $('.modal').modal()
   }
 
   handleFetchProfessional () {
@@ -29,10 +31,11 @@ class UserHome extends Component {
   }
 
   handleAddActivity (activity) {
-    const { addActivity, events } = this.props
+    const { addActivity, fetchAuth, events } = this.props
     const event_id = events[0].id
 
     addActivity({ ...activity, event_id })
+      .then(() => fetchAuth())
   }
 
   render () {

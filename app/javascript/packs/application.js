@@ -8,8 +8,6 @@ import {
 $(document).ready(() => {
    $('select').material_select()
 
-   $('.modal').modal()
-
    $('.datepicker').pickadate({
       selectMonths: true,
       selectYears: 120,

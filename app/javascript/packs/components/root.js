@@ -6,8 +6,6 @@ import { Provider } from 'react-redux'
 import { verifyAuthType } from '../services/verify-auth-type'
 
 import App from './app'
-import UserHome from './user-home'
-import ProfessionalHome from './professional-home'
 
 const Root = ({ store }) => {
   return (

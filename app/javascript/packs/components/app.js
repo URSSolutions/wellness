@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as authActions from '../actions/auth'
 
 import { verifyAuthType } from '../services/verify-auth-type'
 
 import Spinner from 'react-spinkit'
-import Header from '../components/header'
-import UserHome from './user-home'
-import ProfessionalHome from './professional-home'
+import Header from '../containers/header'
+import UserHome from '../containers/user-home'
+import ProfessionalHome from '../containers/professional-home'
 
 class App extends Component {
   constructor (props) {
@@ -16,17 +13,12 @@ class App extends Component {
 
     this.state = { userVerified: false, isUser: false }
 
-    this.dispatchLogout = this.dispatchLogout.bind(this)
     this.handleUserType = this.handleUserType.bind(this)
   }
 
   componentDidMount () {
     verifyAuthType()
       .then((isUser) => this.setState({ userVerified: true, isUser }))
-  }
-
-  dispatchLogout () {
-    this.props.dispatchAuthLogout()
   }
 
   handleUserType () {
@@ -41,7 +33,7 @@ class App extends Component {
     const { state } = this
     return (
       <section>
-        <Header dispatchLogout={ this.dispatchLogout } />
+        <Header />
 
         {
           state.userVerified && this.handleUserType()
@@ -58,8 +50,4 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(authActions, dispatch)
-}
-
-export default connect(null, mapDispatchToProps)(App)
+export default App
