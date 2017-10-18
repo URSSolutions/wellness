@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 import { verifyAuthType } from '../services/verify-auth-type'
 
 import Spinner from 'react-spinkit'
-import Header from '../components/header'
-import UserHome from './user-home'
-import ProfessionalHome from './professional-home'
+import Header from '../containers/header'
+import UserHome from '../containers/user-home'
+import ProfessionalHome from '../containers/professional-home'
 
 class App extends Component {
   constructor (props) {

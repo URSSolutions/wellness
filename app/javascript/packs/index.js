@@ -11,7 +11,7 @@ import {
   compose
 } from 'redux'
 
-import Root from './containers/root'
+import Root from './components/root'
 import { auth } from './reducers/auth'
 import { feedback } from './reducers/feedback'
 import { activity } from './reducers/activity'
