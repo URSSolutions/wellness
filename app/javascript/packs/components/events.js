@@ -1,15 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const User = ({ user }) => {
+const User = ({ event, user }) => {
   return (
-    <li className="collection-item">
-      <div>
+    <li className='collection-item'>
+      <Link to={`/app/events/${event.id}/users/${user.id}/feedback/new`} >
         { `${user.first_name} ${user.last_name}` }
 
-        <a href="#" className="secondary-content">
-          <i className="material-icons">feedback</i>
-        </a>
-      </div>
+        <span className='secondary-content'>
+          <i className='material-icons'>feedback</i>
+        </span>
+
+      </Link>
     </li>
   )
 }
@@ -17,10 +19,10 @@ const User = ({ user }) => {
 const Event = ({ event }) => {
   return (
     <li>
-      <ul className="collection with-header">
-        <li className="collection-header"><h4>{ event.name }</h4></li>
+      <ul className='collection with-header'>
+        <li className='collection-header'><h4>{ event.name }</h4></li>
 
-        { event.users.map((user, index) => <User key={ index } user={ user } />) }
+        { event.users.map((user, index) => <User key={ index } event={ event } user={ user } />) }
       </ul>
     </li>
   )
