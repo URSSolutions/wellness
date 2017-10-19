@@ -51,6 +51,10 @@ second_professional = Professional.create!(email: 'tricia@42.com', password: 'ab
       current_user.activities.create!(name: "Night run - #{activity_number.to_s}",
                                       description: '3km - 1 hour',
                                       event: event, category: :physical)
+
+      puts "Creating weight activity #{activity_number} to user #{user_number}"
+      current_user.activities.create!(description: '84,6 kg',
+                                      event: event, category: :weight)
     end
 
     puts "Creating feedback to user #{user_number}"
