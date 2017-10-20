@@ -1,8 +1,11 @@
 import * as TYPES from './types'
 import API from '../services/api'
+import { showSpinner, hideSpinner } from './spinner'
 
 export const fetchAuth = () => {
   return (dispatch) => {
+    dispatch(showSpinner())
+
     API.get('/api/self')
       .then((response) => {
         if (response.data.class_name === 'User') {
@@ -12,6 +15,7 @@ export const fetchAuth = () => {
         dispatch(fetchProfessionalSuccess(response.data))
       })
       .catch((error) => dispatch(fetchAuthError(error)))
+      .then(() => dispatch(hideSpinner()))
   }
 }
 
