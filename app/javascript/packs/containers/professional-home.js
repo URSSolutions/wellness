@@ -11,7 +11,7 @@ import Events from '../components/events'
 class ProfessionalHome extends Component {
   componentDidMount () {
     this.props.fetchAuth()
-    this.props.fetchEvents()
+      .then(() => this.props.fetchEvents())
   }
 
   render () {

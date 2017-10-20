@@ -4,9 +4,7 @@ import { showSpinner, hideSpinner } from './spinner'
 
 export const fetchAuth = () => {
   return (dispatch) => {
-    dispatch(showSpinner())
-
-    API.get('/api/self')
+    return API.get('/api/self')
       .then((response) => {
         if (response.data.class_name === 'User') {
           return dispatch(fetchUserSuccess(response.data))
@@ -15,7 +13,6 @@ export const fetchAuth = () => {
         dispatch(fetchProfessionalSuccess(response.data))
       })
       .catch((error) => dispatch(fetchAuthError(error)))
-      .then(() => dispatch(hideSpinner()))
   }
 }
 

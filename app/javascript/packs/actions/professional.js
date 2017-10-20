@@ -5,7 +5,7 @@ import { showSpinner, hideSpinner } from './spinner'
 export const fetchProfessional = (id) => {
   return (dispatch) => {
     dispatch(showSpinner())
-
+    
     return API.get(`/api/events/${id}`)
       .then((response) => {
         dispatch(fetchProfessionalSuccess(response.data.professionals[0]))
