@@ -17,13 +17,15 @@ import { events } from './reducers/events'
 import { feedback } from './reducers/feedback'
 import { activity } from './reducers/activity'
 import { professional } from './reducers/professional'
+import { spinner } from './reducers/spinner'
 
 const reducers = combineReducers({
   auth,
   events,
   feedback,
   activity,
-  professional
+  professional,
+  spinner
 })
 
 const enhancer = compose(
