@@ -24,7 +24,7 @@ class ProfessionalHome extends Component {
         <section className='user-home'>
           <div className='user-home__general-info'>
             {
-              props.events.length &&
+              !!props.events.length &&
               <Events events={ props.events } auth={ props.auth }/>
             }
           </div>

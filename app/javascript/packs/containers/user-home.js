@@ -56,13 +56,13 @@ class UserHome extends Component {
               <h2 className='user-home__name'> Evento: </h2>
 
               {
-                props.events.length &&
+                !!props.events.length &&
                 <h2 className='user-home__event-name' > { props.events[0].name } </h2>
               }
             </div>
 
             {
-              props.feedbacks && props.events.length &&
+              !!props.feedbacks.length && !!props.events.length &&
               <LastFeedback
                 professional={props.professional}
                 feedbacks={ props.feedbacks }
@@ -72,7 +72,7 @@ class UserHome extends Component {
           </div>
 
           {
-            props.activities &&
+            !!props.activities &&
             <Activities
               activities={ props.activities }
               toggleActivityInput

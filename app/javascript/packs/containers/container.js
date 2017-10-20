@@ -11,7 +11,7 @@ const Container = (ComposedComponent) => {
       return (
         <div>
           {
-            this.props.spinner &&
+            !!this.props.spinner &&
             <div className='spinner-container'>
               <Spinner fadeIn='none' name='folding-cube' />
             </div>
