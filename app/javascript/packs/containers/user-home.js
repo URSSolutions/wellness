@@ -6,6 +6,7 @@ import * as authActions from '../actions/auth'
 import * as professionalActions from '../actions/professional'
 import * as activityActions from '../actions/activity'
 
+import Header from './header'
 import ActivityModal from '../components/activity-modal'
 import LastFeedback from '../components/last-feedback'
 import Activities from '../components/activities'
@@ -42,39 +43,43 @@ class UserHome extends Component {
     const { state, props } = this
 
     return (
-      <section className='user-home'>
-        <ActivityModal addActivity={ this.handleAddActivity } />
+      <div>
+        <Header />
 
-        <div className='user-home__general-info'>
-          <div>
-            <h2 className='user-home__name'> Olá, { props.auth.first_name } </h2>
+        <section className='user-home'>
+          <ActivityModal addActivity={ this.handleAddActivity } />
 
-            <h2 className='user-home__name'> Evento: </h2>
+          <div className='user-home__general-info'>
+            <div>
+              <h2 className='user-home__name'> Olá, { props.auth.first_name } </h2>
+
+              <h2 className='user-home__name'> Evento: </h2>
+
+              {
+                props.events.length &&
+                <h2 className='user-home__event-name' > { props.events[0].name } </h2>
+              }
+            </div>
 
             {
-              props.events.length &&
-              <h2 className='user-home__event-name' > { props.events[0].name } </h2>
+              props.feedbacks && props.events.length &&
+              <LastFeedback
+                professional={props.professional}
+                feedbacks={ props.feedbacks }
+                handleFetchProfessional={ this.handleFetchProfessional }
+              />
             }
           </div>
 
           {
-            props.feedbacks && props.events.length &&
-            <LastFeedback
-              professional={props.professional}
-              feedbacks={ props.feedbacks }
-              handleFetchProfessional={ this.handleFetchProfessional }
+            props.activities &&
+            <Activities
+              activities={ props.activities }
+              toggleActivityInput
             />
           }
-        </div>
-
-        {
-          props.activities &&
-          <Activities
-            activities={ props.activities }
-            toggleActivityInput
-          />
-        }
-      </section>
+        </section>
+      </div>
     )
   }
 }

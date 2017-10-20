@@ -6,8 +6,8 @@ import * as authActions from '../actions/auth'
 import * as eventsActions from '../actions/events'
 import * as feedbackActions from '../actions/feedback'
 
-import Activities from '../components/activities'
 import Header from './header'
+import Activities from '../components/activities'
 
 class NewFeedback extends Component {
   constructor (props) {
@@ -83,6 +83,7 @@ class NewFeedback extends Component {
 
   render () {
     const { state } = this
+
     return (
       <section>
         <Header />

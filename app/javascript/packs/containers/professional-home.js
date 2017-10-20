@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import * as authActions from '../actions/auth'
 import * as eventsActions from '../actions/events'
 
+import Header from './header'
 import Events from '../components/events'
 
 class ProfessionalHome extends Component {
@@ -17,14 +18,18 @@ class ProfessionalHome extends Component {
     const { state, props } = this
 
     return (
-      <section className='user-home'>
-        <div className='user-home__general-info'>
-          {
-            props.events.length &&
-            <Events events={ props.events } auth={ props.auth }/>
-          }
-        </div>
-      </section>
+      <div>
+        <Header />
+
+        <section className='user-home'>
+          <div className='user-home__general-info'>
+            {
+              props.events.length &&
+              <Events events={ props.events } auth={ props.auth }/>
+            }
+          </div>
+        </section>
+      </div>
     )
   }
 }
