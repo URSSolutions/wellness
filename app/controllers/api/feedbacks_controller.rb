@@ -10,7 +10,7 @@ class Api::FeedbacksController < Api::BaseController
   def create
     authenticate_professional!
 
-    feedback = current_professional.feedbacks.build(activity_params)
+    feedback = current_professional.feedbacks.build(feedback_params)
 
     if feedback.save
       render json: feedback

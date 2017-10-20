@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import ActivityCard from '../components/activity-card'
 
-const Activities = ({ activities }) => {
+const Activities = ({ activities, toggleActivityInput }) => {
   const renderActivities = () => {
     if (activities.length) {
       return activities.map((activity, index) =>
@@ -16,15 +16,18 @@ const Activities = ({ activities }) => {
 
   return (
     <div className='user-home__activity-container'>
-      <h2> Atividades: </h2>
+      <h2 className='user-home__name'> Atividades: </h2>
 
-      <a className="modal-trigger" href="#modal1">
-        <span className="user-home__activity-add"> Enviar nova atividade </span>
+      {
+        toggleActivityInput &&
+        <a className="modal-trigger" href="#modal1">
+          <span className="user-home__activity-add"> Enviar nova atividade </span>
 
-        <div className="btn-floating btn-large waves-effect waves-light red">
-           <i className="material-icons">add</i>
-        </div>
-      </a>
+          <div className="btn-floating btn-large waves-effect waves-light red">
+            <i className="material-icons">add</i>
+          </div>
+        </a>
+      }
 
       <div className='user-home__activities'>
         { renderActivities() }
@@ -35,6 +38,11 @@ const Activities = ({ activities }) => {
 
 Activities.propTypes = {
   activities: PropTypes.array.isRequired,
+  toggleActivityInput: PropTypes.bool
+}
+
+Activities.defaultProps = {
+  toggleActivityInput: false
 }
 
 export default Activities

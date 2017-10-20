@@ -43,7 +43,8 @@ h4 {
 }
 
 .spinner-container {
-  height: 60vh;
+  background-color: rgba($light-blue, .5);
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

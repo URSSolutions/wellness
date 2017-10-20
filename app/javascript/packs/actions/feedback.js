@@ -1,11 +1,15 @@
 import * as TYPES from './types'
 import API from '../services/api'
+import { showSpinner, hideSpinner } from './spinner'
 
-export const addFeedback = () => {
+export const addFeedback = (feedback) => {
   return (dispatch) => {
-    API.get('/api/feedbacks/')
+    dispatch(showSpinner())
+
+    API.post('/api/feedbacks/', feedback)
       .then((response) => dispatch(addFeedbackSuccess(response.data)))
       .catch((error) => dispatch(addFeedbackError(error)))
+      .then(() => dispatch(hideSpinner()))
   }
 }
 

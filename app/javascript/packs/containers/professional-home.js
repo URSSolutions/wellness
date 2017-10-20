@@ -3,31 +3,33 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from '../actions/auth'
+import * as eventsActions from '../actions/events'
 
+import Header from './header'
 import Events from '../components/events'
 
 class ProfessionalHome extends Component {
   componentDidMount () {
     this.props.fetchAuth()
+      .then(() => this.props.fetchEvents())
   }
 
   render () {
     const { state, props } = this
 
     return (
-      <section className='user-home'>
-        <div className='user-home__general-info'>
-          <div>
-            <h2 className='user-home__name'> Olá, { props.auth.first_name } </h2>
+      <div>
+        <Header />
 
-            <h2 className='user-home__name'> Eventos: </h2>
+        <section className='user-home'>
+          <div className='user-home__general-info'>
             {
-              props.events.length &&
-              <Events events={ props.events } />
+              !!props.events.length &&
+              <Events events={ props.events } auth={ props.auth }/>
             }
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     )
   }
 }
@@ -41,12 +43,15 @@ ProfessionalHome.propTypes = {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth.currentProfessional,
-    events: state.auth.currentProfessional.events,
+    events: state.events,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(authActions, dispatch)
+  return bindActionCreators({
+    ...authActions,
+    ...eventsActions
+  }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfessionalHome)

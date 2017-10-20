@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 
 import { verifyAuthType } from '../services/verify-auth-type'
 
-import Spinner from 'react-spinkit'
-import Header from '../containers/header'
 import UserHome from '../containers/user-home'
 import ProfessionalHome from '../containers/professional-home'
 
@@ -30,20 +28,10 @@ class App extends Component {
   }
 
   render () {
-    const { state } = this
     return (
       <section>
-        <Header />
-
         {
-          state.userVerified && this.handleUserType()
-        }
-
-        {
-          !state.userVerified &&
-          <div className='spinner-container'>
-            <Spinner name='folding-cube' />
-          </div>
+          this.state.userVerified && this.handleUserType()
         }
       </section>
     )
