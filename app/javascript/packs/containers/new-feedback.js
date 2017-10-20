@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from '../actions/auth'
 import * as eventsActions from '../actions/events'
+import * as feedbackActions from '../actions/feedback'
 
 import Activities from '../components/activities'
 import Header from './header'
@@ -12,9 +13,16 @@ class NewFeedback extends Component {
   constructor (props) {
     super(props)
 
-    this.state = { user: {}, event: {} }
+    this.state = {
+      user: {},
+      event: {},
+      description: ''
+    }
 
     this.setUser = this.setUser.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleFeedbackSubmit = this.handleFeedbackSubmit.bind(this)
+    this.resetState = this.resetState.bind(this)
   }
 
   componentDidMount () {
@@ -49,6 +57,30 @@ class NewFeedback extends Component {
     return Object.keys(obj).length
   }
 
+  handleChange (event) {
+    const { name, value } = event.target
+
+    this.setState({ [name]: value })
+  }
+
+  handleFeedbackSubmit () {
+    const { description, user, event } = this.state
+
+    this.props.addFeedback({
+      feedback: {
+        description,
+        user_id: user.id,
+        event_id: event.id,
+      }
+    })
+
+    this.resetState()
+  }
+
+  resetState () {
+    this.setState({ description: '' })
+  }
+
   render () {
     const { state } = this
     return (
@@ -57,15 +89,15 @@ class NewFeedback extends Component {
 
         <div className='user-home'>
           <div className='user-home__general-info'>
-            <ul className="collection">
+            <ul className='collection'>
               {
                 this.isEmpty(state.user) &&
                 state.event.length &&
 
-                <li className="collection-item avatar">
-                  <i className="material-icons circle">person</i>
+                <li className='collection-item avatar'>
+                  <i className='material-icons circle'>person</i>
 
-                  <span className="title">{ `${state.user.first_name} ${state.user.last_name}` }</span>
+                  <span className='title'>{ `${state.user.first_name} ${state.user.last_name}` }</span>
 
                   <p>{ state.event.name }</p>
                 </li>
@@ -74,12 +106,37 @@ class NewFeedback extends Component {
               {
                 this.isEmpty(state.user) &&
                 <li>
-                  <ul className="collection-item">
-                    <Activities activities={ state.user.activities } toggleActivityInput={ false } />
+                  <ul className='collection-item'>
+                    <Activities activities={ state.user.activities } />
                   </ul>
                 </li>
               }
             </ul>
+          </div>
+
+          <div className='collection'>
+            <div className='collection-item'>
+
+              <h2 className='user-home__name'> Feedback </h2>
+
+              <div className='input-field col s10'>
+                <textarea
+                  id='description'
+                  name='description'
+                  className='materialize-textarea'
+                  data-length='240'
+                  value={ state.description }
+                  onChange={ this.handleChange }>
+                </textarea>
+                <label htmlFor='textarea1'>Textarea</label>
+              </div>
+
+              <div className='col s4'>
+                <button className='btn waves-effect waves-light' onClick={ this.handleFeedbackSubmit }>
+                  Enviar Feedback <i className='material-icons right'>send</i>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -92,6 +149,7 @@ NewFeedback.propTypes = {
   events: PropTypes.array.isRequired,
   fetchAuth: PropTypes.func.isRequired,
   fetchEvents: PropTypes.func.isRequired,
+  addFeedback: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => {
@@ -104,7 +162,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     ...authActions,
-    ...eventsActions
+    ...eventsActions,
+    ...feedbackActions
   }, dispatch)
 }
 
