@@ -16,7 +16,7 @@ const Activities = ({ activities, toggleActivityInput }) => {
 
   return (
     <div className='user-home__activity-container'>
-      <h2> Atividades: </h2>
+      <h2 className='user-home__name'> Atividades: </h2>
 
       {
         toggleActivityInput &&
@@ -39,6 +39,10 @@ const Activities = ({ activities, toggleActivityInput }) => {
 Activities.propTypes = {
   activities: PropTypes.array.isRequired,
   toggleActivityInput: PropTypes.bool
+}
+
+Activities.defaultProps = {
+  toggleActivityInput: false
 }
 
 export default Activities
