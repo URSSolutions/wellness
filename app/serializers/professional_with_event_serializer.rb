@@ -9,6 +9,7 @@ class ProfessionalWithEventSerializer < ApplicationSerializer
           user.as_json.tap do |user_json|
             user_json[:activities] = user.activities.where(event: event).map(&:as_json)
             user_json[:feedbacks] = user.feedbacks.where(event: event, professional: object).map(&:as_json)
+            user_json[:weights] = user.activities.where(category: :weight).pluck(:description)
           end
         end
       end
