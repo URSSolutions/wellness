@@ -6,6 +6,7 @@ import * as authActions from '../actions/auth'
 import * as eventsActions from '../actions/events'
 import * as feedbackActions from '../actions/feedback'
 
+import WeightChart from '../components/weight-chart'
 import Header from './header'
 import Activities from '../components/activities'
 
@@ -114,6 +115,8 @@ class NewFeedback extends Component {
               }
             </ul>
           </div>
+
+          <WeightChart weights={ state.user.weights }/>
 
           <div className='collection'>
             <div className='collection-item'>

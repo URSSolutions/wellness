@@ -1,0 +1,37 @@
+.weight-chart {
+  padding: 10px 0;
+
+  @include desktop {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    div {
+      max-width: 500px;
+    }
+  }
+
+  &__title {
+    margin: 15px 0;
+    padding: 0 10px;
+    font-size: 2rem;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    @include tablet {
+      font-size: 2.3rem;
+    }
+
+    @include desktop {
+      margin-bottom: 30px;
+      margin-left: 10px;
+      align-self: flex-start;
+    }
+  }
+
+  &__observation {
+    text-align: center;
+    font-size: 1rem;
+    color: #aaa;
+  }
+}
