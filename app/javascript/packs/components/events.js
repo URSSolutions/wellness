@@ -18,7 +18,7 @@ const User = ({ event, user }) => {
 
 const Event = ({ event }) => {
   return (
-    <li>
+    <li className="professional-events__list__item">
       <ul className='collection with-header'>
         <li className='collection-header'><h4>{ event.name }</h4></li>
 
@@ -35,9 +35,11 @@ const Events = ({ events, auth }) => {
 
       <h2 className='user-home__name'> Eventos: </h2>
 
-      <ul>
-        { events.map((event, index) => <Event key={ index } event={ event } />) }
-      </ul>
+      <div className="professional-events">
+        <ul className="professional-events__list">
+          { events.map((event, index) => <Event key={ index } event={ event } />) }
+        </ul>
+      </div>
     </div>
   )
 }

@@ -1,0 +1,15 @@
+.professional-events {
+  &__list {
+    @include desktop {
+      display: flex;
+      flex-direction: row;
+    }
+
+    &__item {
+      @include desktop {
+        min-width: 500px;
+        margin: 40px;
+      }
+    }
+  }
+}
