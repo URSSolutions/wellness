@@ -30,7 +30,7 @@
 
     @include tablet {
       width: 48%;
-      max-height: 300px;
+      max-height: 400px;
       margin: 22px 7px;
     }
 
@@ -59,14 +59,13 @@
   }
 
   &__professional {
-    padding-top: 30px;
+    padding-top: 15px;
     display: flex;
     justify-content: flex-start;
   }
 
   &__professional-text {
     align-self: flex-end;
-    margin-left: 20px;
   }
 
   &__professional-image {
