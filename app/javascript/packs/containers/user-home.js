@@ -59,10 +59,15 @@ class UserHome extends Component {
                 !!props.events.length &&
                 <h2 className='user-home__event-name' > { props.events[0].name } </h2>
               }
+
+              {
+                !props.events.length &&
+                <h3> Você ainda não possui nenhum evento ainda! </h3>
+              }
             </div>
 
             {
-              !!props.feedbacks.length && !!props.events.length &&
+
               <LastFeedback
                 professional={props.professional}
                 feedbacks={ props.feedbacks }

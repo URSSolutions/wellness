@@ -13,8 +13,10 @@ const Header = (props) => {
   return (
     <section>
       <header className="shared-header">
-          <h1 className="shared-header__title"> Wellness </h1>
-
+          <a href="/">
+            <h1 className="shared-header__title"> Wellness </h1>
+          </a>
+          
           <span
             className="shared-header__logout"
             onClick={ props.dispatchAuthLogout }>
