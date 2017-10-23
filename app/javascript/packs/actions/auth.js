@@ -42,10 +42,13 @@ const fetchAuthError = (error) => {
 
 export const dispatchAuthLogout = () => {
   return (dispatch) => {
+    dispatch(showSpinner())
+
     API.delete('/users/sign_out')
       .then(() => window.location.replace('/'))
       .then(() => dispatch(dispatchAuthLogoutSuccess()))
       .catch((error) => dispatch(dispatchAuthLogoutError(error)))
+      .then(() => dispatch(hideSpinner()))
   }
 }
 
