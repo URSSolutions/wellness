@@ -6,9 +6,6 @@
   <div class="login__form">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <%= render "shared/sign_in", form: f %>
-      <div class="actions">
-        <%= f.submit "Log in" %>
-      </div>
     <% end %>
   </div>
 
