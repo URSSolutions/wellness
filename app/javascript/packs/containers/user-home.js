@@ -62,12 +62,12 @@ class UserHome extends Component {
 
               {
                 !props.events.length &&
-                <h3> Você ainda não possui nenhum evento ainda! </h3>
+                <h2> Você não comprou nenhum evento ainda! </h2>
               }
             </div>
 
             {
-
+              !!props.feedbacks.length && !!props.events.length &&
               <LastFeedback
                 professional={props.professional}
                 feedbacks={ props.feedbacks }
