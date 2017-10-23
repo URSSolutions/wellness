@@ -2,12 +2,14 @@
 
 <section class="checkout">
   <h2>Checkout</h2>
-  <div class="card medium">
+  <div class="card medium margin-top-triple">
     <h3 class="checkout__title"><%= @event.name %></h3>
 
     <p class="checkout__description">
       <%= @event.description %>
     </p>
+
+    <h2 class="margin-top-triple"> <strong> Preço: </strong> R$ <%= @event.price.to_s.gsub('.', ',') %> </h2>
 
     <div class="card-action">
       <%= form_for(@subscription, url: "/events/#{@event.id}/buy", method: :post) do |f| %>
