@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171007194815) do
+ActiveRecord::Schema.define(version: 20171031230648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,8 +22,14 @@ ActiveRecord::Schema.define(version: 20171007194815) do
     t.integer "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "event_id"
+    t.integer "day_id"
+  end
+
+  create_table "days", force: :cascade do |t|
+    t.integer "subscription_id"
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -45,10 +51,9 @@ ActiveRecord::Schema.define(version: 20171007194815) do
   create_table "feedbacks", force: :cascade do |t|
     t.string "description"
     t.integer "professional_id"
-    t.integer "user_id"
-    t.integer "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "day_id"
   end
 
   create_table "professionals", force: :cascade do |t|

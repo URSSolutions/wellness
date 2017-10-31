@@ -1,7 +1,6 @@
 class Feedback < ApplicationRecord
-  belongs_to :user
+  has_one :day
   belongs_to :professional
-  belongs_to :event
 
-  validates_presence_of :event, :professional, :user, :description
+  validates_presence_of :day, :professional, :description
 end
