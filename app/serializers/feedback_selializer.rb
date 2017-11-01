@@ -1,8 +1,7 @@
 class FeedbackSerializer < ApplicationSerializer
-  attributes :id, :description, :updated_at, :created_at,
-             :event_id, :user_id, :professional_id
+  attributes :id, :description, :updated_at, :created_at, :professional_id,
+             :day_id
 
-  belongs_to :event
-  belongs_to :user
+  belongs_to :day
   belongs_to :professional
 end
