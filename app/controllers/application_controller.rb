@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    '/app'
+    if request.referer.to_s.last(7) == 'sign_up'
+      super
+    else
+      '/app'
+    end
   end
 end
