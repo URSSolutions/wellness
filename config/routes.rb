@@ -18,10 +18,15 @@ Rails.application.routes.draw do
 
   namespace :api, path: '/api' do
     get '/self', to: 'meta#myself'
-    get '/professionals/events', to: 'professionals#events'
+    resources :users, only: [] do
+      resources :subscriptions, only: [] do
+        resources :days, only: [] do
+          resources :feedbacks, except: [:new, :edit]
+          resources :activities, except: [:new, :edit]
+        end
+      end
+    end
 
-    resources :feedbacks, except: [:new, :edit]
-    resources :activities, except: [:new, :edit]
     resources :events, only: [:show, :index]
   end
 end
