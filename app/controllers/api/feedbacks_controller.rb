@@ -1,16 +1,15 @@
 class Api::FeedbacksController < Api::BaseController
   before_action :load_feedback, except: [:index, :create]
+  before_action :load_day, only: [:index, :create]
+  before_action :authenticate_professional!, except: [:index, :show]
+  before_action :authenticate_any!, only: [:index, :show]
 
   def index
-    authenticate_user!
-
-    render json: current_user.feedbacks
+    render json: @day.feedbacks
   end
 
   def create
-    authenticate_professional!
-
-    feedback = current_professional.feedbacks.build(feedback_params)
+    feedback = @day.feedbacks.build(feedback_params)
 
     if feedback.save
       render json: feedback
@@ -20,14 +19,10 @@ class Api::FeedbacksController < Api::BaseController
   end
 
   def show
-    authenticate_user!
-
     render json: @feedback
   end
 
   def update
-    authenticate_professional!
-
     if @feedback.update(activity_params)
       render json: @feedback
     else
@@ -42,10 +37,16 @@ class Api::FeedbacksController < Api::BaseController
   private
 
   def load_feedback
-    @feedback = Feedback.find(params.require(:id))
+    @feedback = load_day.feedbacks.find(params.require(:id))
   end
 
   def feedback_params
-    params.require(:feedback).permit(:description, :user_id, :event_id)
+    params.require(:feedback).permit(:description)
+  end
+
+  def load_day
+    @day = User.find(params.require(:user_id))
+                           .subscriptions.find(params.require(:subscription_id))
+                           .days.find(params.require(:day_id))
   end
 end
