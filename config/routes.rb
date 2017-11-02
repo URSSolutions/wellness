@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   namespace :api, path: '/api' do
     get '/self', to: 'meta#myself'
     resources :users, only: [] do
-      resources :subscriptions, only: [] do
+      resources :subscriptions, only: [:index, :show] do
         resources :days, only: [:index, :show] do
           resources :feedbacks, except: [:new, :edit]
           resources :activities, except: [:new, :edit]
