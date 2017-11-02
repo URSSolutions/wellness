@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   namespace :api, path: '/api' do
     get '/self', to: 'meta#myself'
-    resources :users, only: [] do
+    resources :users, only: [:index, :show] do
       resources :subscriptions, only: [:index, :show] do
         get '/current_day', to: 'days#current'
         resources :days, only: [:index, :show] do
