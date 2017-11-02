@@ -13,19 +13,21 @@ import {
 
 import Root from './components/root'
 import { auth } from './reducers/auth'
-import { events } from './reducers/events'
+import { event } from './reducers/event'
 import { feedback } from './reducers/feedback'
 import { activity } from './reducers/activity'
 import { professional } from './reducers/professional'
 import { spinner } from './reducers/spinner'
+import { user } from './reducers/user'
 
 const reducers = combineReducers({
   auth,
-  events,
+  event,
   feedback,
   activity,
   professional,
-  spinner
+  spinner,
+  user
 })
 
 const enhancer = compose(
