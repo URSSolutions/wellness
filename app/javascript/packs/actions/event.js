@@ -8,23 +8,23 @@ export const fetchEvent = (id) => {
 
     return API.get(`/api/events/${id}`)
       .then((response) => {
-        dispatch(fetchEventsSuccess(response.data))
+        dispatch(fetchEventSuccess(response.data))
       })
-      .catch((error) => dispatch(fetchEventsError(error)))
+      .catch((error) => dispatch(fetchEventError(error)))
       .then(() => dispatch(hideSpinner()))
   }
 }
 
-const fetchEventsSuccess = (event) => {
+const fetchEventSuccess = (event) => {
   return {
-    type: TYPES.FETCH_EVENTS_SUCCESS,
+    type: TYPES.FETCH_EVENT_SUCCESS,
     event
   }
 }
 
-const fetchEventsError = (error) => {
+const fetchEventError = (error) => {
   return {
-    type: TYPES.FETCH_EVENTS_ERROR,
+    type: TYPES.FETCH_EVENT_ERROR,
     error
   }
 }
