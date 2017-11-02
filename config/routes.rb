@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get '/self', to: 'meta#myself'
     resources :users, only: [] do
       resources :subscriptions, only: [:index, :show] do
+        get '/current_day', to: 'days#current'
         resources :days, only: [:index, :show] do
           resources :feedbacks, except: [:new, :edit]
           resources :activities, except: [:new, :edit]

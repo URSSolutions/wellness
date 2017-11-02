@@ -1,9 +1,8 @@
 class Api::DaysController < Api::BaseController
   before_action :authenticate_any!
+  before_action :load_subscription, only: [:index, :current]
 
   def index
-    load_subscription
-
     render json: @subscription.days
   end
 
@@ -11,6 +10,10 @@ class Api::DaysController < Api::BaseController
     load_day
 
     render json: @day
+  end
+
+  def current
+    render json: @subscription.days.where(date: Time.current).first
   end
 
   private
