@@ -10,7 +10,9 @@ class BuyEventService
 
   def perform
     if event_is_able_to_be_bought? && !user_already_bought?
-      Subscription.create!(user: user, event: event)
+      Subscription.transaction do
+        create_days Subscription.create!(user: user, event: event)
+      end
     end
   end
 
@@ -23,5 +25,11 @@ class BuyEventService
 
   def user_already_bought?
     event.users.include?(user)
+  end
+
+  def create_days(subscription)
+    (subscription.event.initial_date..subscription.event.final_date).each do |date|
+      subscription.days.create!(date: date)
+    end
   end
 end
