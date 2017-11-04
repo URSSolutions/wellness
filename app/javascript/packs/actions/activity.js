@@ -27,11 +27,11 @@ const fetchActivitiesError = (error) => {
   }
 }
 
-export const addActivity = (activity) => {
+export const addActivity = (userId, subscriptionId, dayId, activity) => {
   return (dispatch) => {
     dispatch(showSpinner())
 
-    return API.post('/api/activities/', activity)
+    return API.post(`/api/users/${userId}/subscriptions/${subscriptionId}/days/${dayId}/activities/`, activity)
       .then((response) => dispatch(addActivitySuccess(response.data)))
       .catch((error) => dispatch(addActivityError(error)))
       .then(() => dispatch(hideSpinner()))
