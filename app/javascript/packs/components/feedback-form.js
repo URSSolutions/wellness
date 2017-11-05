@@ -30,7 +30,7 @@ class FeedbackForm extends Component {
   }
 
   feedbackSubmit () {
-    if (this.props.feedback && this.props.description) {
+    if (this.props.feedback && this.props.feedback.description) {
       return this.props.handleFeedbackSubmit(false, this.state.description)
     }
 

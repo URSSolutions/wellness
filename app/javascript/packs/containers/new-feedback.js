@@ -21,7 +21,6 @@ class NewFeedback extends Component {
 
     this.state = {
       user: {},
-      event: {},
       description: '',
       feedback: {},
       subscription: {}
@@ -44,19 +43,12 @@ class NewFeedback extends Component {
 
         this.setState( { subscription })
 
-        this.props.fetchFeedbacks(userId, subscription.id, dayId)
-          .then(() => this.getFeedback(this.props.auth.id))
+        this.handleFetchFeedbacks(userId, subscription.id, dayId)
       })
   }
 
   getSubscription (eventId) {
     return this.props.user.subscriptions.find((subscription) => subscription.event_id === eventId)
-  }
-
-  getFeedback (professionalId) {
-    const feedback = this.props.feedbacks.find((feedback) => feedback.professional_id === professionalId)
-
-    this.setState({ feedback })
   }
 
   isEmpty (obj) {
@@ -69,21 +61,32 @@ class NewFeedback extends Component {
     this.setState({ [name]: value })
   }
 
-  handleFeedbackSubmit (isFeedbackNew, description) {
-    if (isFeedbackNew) {
-      return this.handleAddFeedback(description)
-    }
+  getFeedback (professionalId) {
+    const feedback = this.props.feedbacks.find((feedback) => feedback.professional.id === professionalId)
+    this.setState({ feedback })
+  }
 
-    this.handleUpdateFeedback(description)
+  handleFetchFeedbacks (userId, subscriptionId, dayId) {
+    return this.props.fetchFeedbacks(userId, subscriptionId, dayId)
+      .then(() => this.getFeedback(this.props.auth.id))
   }
 
   setIds () {
     const subscriptionId = this.state.subscription.id
     const { match: { params: { userId, dayId } } } = this.props
-    const feedbackId = this.state.feedback.id
+    const feedbackId = this.state.feedback ? this.state.feedback.id : ''
     const professional_id = this.props.auth.id
 
     return { userId, subscriptionId, feedbackId, dayId, professional_id }
+  }
+
+  handleFeedbackSubmit (isFeedbackNew, description) {
+    if (isFeedbackNew) {
+      console.log('e novo sim cumpadi');
+      return this.handleAddFeedback(description)
+    }
+
+    this.handleUpdateFeedback(description)
   }
 
   handleAddFeedback (description) {
@@ -91,6 +94,7 @@ class NewFeedback extends Component {
     const data = { feedback: { description, professional_id } }
 
     this.props.addFeedback(userId, subscriptionId, dayId, data)
+      .then(() => this.handleFetchFeedbacks(userId, subscriptionId, dayId))
       .then(() => alert('Feedback criado!'))
   }
 
@@ -99,6 +103,7 @@ class NewFeedback extends Component {
     const data = { feedback: { description, professional_id } }
 
     this.props.updateFeedback(userId, subscriptionId, dayId, feedbackId, data)
+      .then(() => this.handleFetchFeedbacks(userId, subscriptionId, dayId))
       .then(() => alert('Feedback atualizado!'))
   }
 

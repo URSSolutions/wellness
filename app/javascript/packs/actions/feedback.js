@@ -6,7 +6,7 @@ export const addFeedback = (userId, subscriptionId, dayId = 1, feedback) => {
   return (dispatch) => {
     dispatch(showSpinner())
 
-    API.post(`api/users/${userId}/subscriptions/${subscriptionId}/days/${dayId}/feedbacks`, feedback)
+    return API.post(`api/users/${userId}/subscriptions/${subscriptionId}/days/${dayId}/feedbacks`, feedback)
       .then((response) => dispatch(addFeedbackSuccess(response.data)))
       .catch((error) => dispatch(addFeedbackError(error)))
       .then(() => dispatch(hideSpinner()))
@@ -27,11 +27,11 @@ const addFeedbackError = (error) => {
   }
 }
 
-export const updateFeedback = (userId, subscriptionId, dayId = 1, feedback) => {
+export const updateFeedback = (userId, subscriptionId, dayId = 1, feedbackId, feedback) => {
   return (dispatch) => {
     dispatch(showSpinner())
 
-    API.put(`api/users/${userId}/subscriptions/${subscriptionId}/days/${dayId}/feedbacks`, feedback)
+    return API.put(`api/users/${userId}/subscriptions/${subscriptionId}/days/${dayId}/feedbacks/${feedbackId}`, feedback)
       .then((response) => dispatch(updateFeedbackSuccess(response.data)))
       .catch((error) => dispatch(updateFeedbackError(error)))
       .then(() => dispatch(hideSpinner()))
