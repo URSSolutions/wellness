@@ -41,7 +41,7 @@ class Api::FeedbacksController < Api::BaseController
   end
 
   def feedback_params
-    params.require(:feedback).permit(:description)
+    params.require(:feedback).permit(:description, :professional_id)
   end
 
   def load_day
