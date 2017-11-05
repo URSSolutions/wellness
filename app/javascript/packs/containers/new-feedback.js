@@ -3,12 +3,17 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from '../actions/auth'
-import * as eventsActions from '../actions/events'
+import * as eventsActions from '../actions/event'
 import * as feedbackActions from '../actions/feedback'
+import * as userActions from '../actions/user'
 
 import WeightChart from '../components/weight-chart'
 import Header from './header'
 import Activities from '../components/activities'
+import FeedbackForm from '../components/feedback-form'
+
+import { formatSimpleDate } from '../services/format-date'
+import { translateGender } from '../services/translate-gender'
 
 class NewFeedback extends Component {
   constructor (props) {
@@ -17,41 +22,41 @@ class NewFeedback extends Component {
     this.state = {
       user: {},
       event: {},
-      description: ''
+      description: '',
+      feedback: {},
+      subscription: {}
     }
 
-    this.setUser = this.setUser.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleFeedbackSubmit = this.handleFeedbackSubmit.bind(this)
-    this.resetState = this.resetState.bind(this)
   }
 
   componentDidMount () {
+    const { eventId, userId, dayId } = this.props.match.params
+
     this.props.fetchAuth()
 
-    this.props.fetchEvents()
-    .then(() => this.setUser())
+    this.props.fetchEvent(eventId)
+
+    this.props.fetchUser(userId)
+      .then(() => {
+        const subscription = this.getSubscription(+eventId)
+
+        this.setState( { subscription })
+
+        this.props.fetchFeedbacks(userId, subscription.id, dayId)
+          .then(() => this.getFeedback(this.props.auth.id))
+      })
   }
 
-  setUser () {
-    const {
-      getUser,
-      getEvent,
-      props: { events, match: { params } }
-    } = this
-
-    const event = getEvent(events, +params.eventId)
-    const user = getUser(event, +params.userId)
-
-    this.setState({ user, event })
+  getSubscription (eventId) {
+    return this.props.user.subscriptions.find((subscription) => subscription.event_id === eventId)
   }
 
-  getEvent (events, currentEventId) {
-    return events.find((event) => event.id === currentEventId)
-  }
+  getFeedback (professionalId) {
+    const feedback = this.props.feedbacks.find((feedback) => feedback.professional_id === professionalId)
 
-  getUser (event, currentUserId) {
-    return event.users.find((user) => user.id === currentUserId)
+    this.setState({ feedback })
   }
 
   isEmpty (obj) {
@@ -64,26 +69,41 @@ class NewFeedback extends Component {
     this.setState({ [name]: value })
   }
 
-  handleFeedbackSubmit () {
-    const { description, user, event } = this.state
+  handleFeedbackSubmit (isFeedbackNew, description) {
+    if (isFeedbackNew) {
+      return this.handleAddFeedback(description)
+    }
 
-    this.props.addFeedback({
-      feedback: {
-        description,
-        user_id: user.id,
-        event_id: event.id,
-      }
-    })
-
-    this.resetState()
+    this.handleUpdateFeedback(description)
   }
 
-  resetState () {
-    this.setState({ description: '' })
+  setIds () {
+    const subscriptionId = this.state.subscription.id
+    const { match: { params: { userId, dayId } } } = this.props
+    const feedbackId = this.state.feedback.id
+    const professional_id = this.props.auth.id
+
+    return { userId, subscriptionId, feedbackId, dayId, professional_id }
+  }
+
+  handleAddFeedback (description) {
+    const { userId, subscriptionId, dayId, professional_id } = this.setIds()
+    const data = { feedback: { description, professional_id } }
+
+    this.props.addFeedback(userId, subscriptionId, dayId, data)
+      .then(() => alert('Feedback criado!'))
+  }
+
+  handleUpdateFeedback (description) {
+    const { userId, subscriptionId, feedbackId, dayId, professional_id } = this.setIds()
+    const data = { feedback: { description, professional_id } }
+
+    this.props.updateFeedback(userId, subscriptionId, dayId, feedbackId, data)
+      .then(() => alert('Feedback atualizado!'))
   }
 
   render () {
-    const { state } = this
+    const { props, state } = this
 
     return (
       <section>
@@ -91,57 +111,51 @@ class NewFeedback extends Component {
 
         <div className='user-home'>
           <div className='user-home__general-info'>
-            <ul className='collection'>
-              {
-                this.isEmpty(state.user) &&
-                state.event.length &&
+            {
+              this.isEmpty(props.user) &&
+              <div className='collection'>
+                <div className='collection-item'>
+                  <h2 className='title'>Usuário: { `${props.user.first_name} ${ props.user.last_name }` }</h2>
 
-                <li className='collection-item avatar'>
-                  <i className='material-icons circle'>person</i>
+                  <p className='margin-top-triple'> Sexo: { translateGender(props.user.gender) } </p>
+                  <p> Data de nascimento: { formatSimpleDate(props.user.initial_date) } </p>
+                  <p> Altura: { props.user.height } </p>
+                  <p> Peso: { props.user.weight } </p>
+                </div>
+              </div>
+            }
 
-                  <span className='title'>{ `${state.user.first_name} ${state.user.last_name}` }</span>
+            {
+              props.event &&
+              <div className='collection'>
+                <div className='collection-item'>
+                  <h2> Evento: { props.event.name } </h2>
 
-                  <p>{ state.event.name }</p>
-                </li>
-              }
+                  <p className='margin-top-triple'>
+                    Data de início: { formatSimpleDate(props.event.initial_date) }
+                  </p>
 
-              {
-                this.isEmpty(state.user) &&
-                <li>
-                  <ul className='collection-item'>
-                    <Activities activities={ state.user.activities } />
-                  </ul>
-                </li>
-              }
-            </ul>
+                  <p> Data de término: { formatSimpleDate(props.event.final_date) } </p>
+                </div>
+              </div>
+            }
+
+            {/* {
+              this.isEmpty(props.user) &&
+              <li>
+                <ul className='collection-item'>
+                  <Activities activities={ props.user.activities } />
+                </ul>
+              </li>
+            } */}
           </div>
 
-          <WeightChart weights={ state.user.weights }/>
+          {/* <WeightChart weights={ props.user.weights }/> */}
 
-          <div className='collection'>
-            <div className='collection-item'>
-
-              <h2 className='user-home__name'> Feedback </h2>
-
-              <div className='input-field col s10'>
-                <textarea
-                  id='description'
-                  name='description'
-                  className='materialize-textarea'
-                  data-length='240'
-                  value={ state.description }
-                  onChange={ this.handleChange }>
-                </textarea>
-                <label htmlFor='textarea1'>Textarea</label>
-              </div>
-
-              <div className='col s4'>
-                <button className='btn waves-effect waves-light' onClick={ this.handleFeedbackSubmit }>
-                  Enviar Feedback <i className='material-icons right'>send</i>
-                </button>
-              </div>
-            </div>
-          </div>
+          <FeedbackForm
+            feedback={ state.feedback }
+            handleFeedbackSubmit={ this.handleFeedbackSubmit }
+          />
         </div>
       </section>
     )
@@ -150,16 +164,23 @@ class NewFeedback extends Component {
 
 NewFeedback.propTypes = {
   auth: PropTypes.object.isRequired,
-  events: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
+  event: PropTypes.object.isRequired,
   fetchAuth: PropTypes.func.isRequired,
-  fetchEvents: PropTypes.func.isRequired,
+  fetchEvent: PropTypes.func.isRequired,
+  fetchUser: PropTypes.func.isRequired,
+  fetchFeedbacks: PropTypes.func.isRequired,
   addFeedback: PropTypes.func.isRequired,
+  updateFeedback: PropTypes.func.isRequired,
+  feedbacks: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = (state) => {
   return {
     auth: state.auth.currentProfessional,
-    events: state.events,
+    event: state.event.currentEvent,
+    user: state.user,
+    feedbacks: state.feedback.feedbacks
   }
 }
 
@@ -167,6 +188,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     ...authActions,
     ...eventsActions,
+    ...userActions,
     ...feedbackActions
   }, dispatch)
 }
