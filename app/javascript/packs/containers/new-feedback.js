@@ -150,7 +150,7 @@ class NewFeedback extends Component {
             } */}
           </div>
 
-          {/* <WeightChart weights={ props.user.weights }/> */}
+          <WeightChart weights={ state.subscription.weights }/>
 
           <FeedbackForm
             feedback={ state.feedback }
