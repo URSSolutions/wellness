@@ -3,14 +3,13 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from '../actions/auth'
-import * as professionalActions from '../actions/professional'
 import * as activityActions from '../actions/activity'
 import * as feedbackActions from '../actions/feedback'
 import * as dayActions from '../actions/day'
 
 import Header from './header'
 import ActivityModal from '../components/activity-modal'
-import LastFeedback from '../components/last-feedback'
+import Feedbacks from '../components/feedbacks'
 import Activities from '../components/activities'
 
 import { formatSimpleDate } from '../services/format-date'
@@ -22,7 +21,6 @@ class UserHome extends Component {
 
     this.state = { event: undefined }
 
-    this.handleFetchProfessional = this.handleFetchProfessional.bind(this)
     this.handleAddActivity = this.handleAddActivity.bind(this)
     this.handleFetchCurrentDay = this.handleFetchCurrentDay.bind(this)
   }
@@ -33,18 +31,12 @@ class UserHome extends Component {
     $('.modal').modal()
   }
 
-  handleFetchProfessional () {
-    const { fetchProfessional, events } = this.props
-
-    fetchProfessional(events[0].id)
-  }
-
   handleAddActivity (activity) {
-    const { addActivity, fetchAuth, events } = this.props
-    const event_id = events[0].id
+    const { addActivity, auth, currentDay } = this.props
+    const { event, subscription } = this.state
 
-    addActivity({ ...activity, event_id })
-      .then(() => fetchAuth())
+    addActivity(auth.id, subscription.id, currentDay.id, { ...activity, event_id: event.id })
+      .then(() => this.handleFetchCurrentDay(subscription))
   }
 
   handleEvent (eventId) {
@@ -76,7 +68,7 @@ class UserHome extends Component {
 
               <h2 className='user-home__name'> Eventos: </h2>
 
-              <p>Selecione o evento desejado: </p>
+              <p> Selecione o evento desejado: </p>
 
               {
                 !!props.events.length &&
@@ -107,9 +99,9 @@ class UserHome extends Component {
             </div>
 
             {
-              !!props.feedbacks.length && !!props.events.length &&
-              <LastFeedback
-                professional={props.professional}
+              props.feedbacks.length &&
+              <Feedbacks
+                key={ index }
                 feedbacks={ props.feedbacks }
                 handleFetchProfessional={ this.handleFetchProfessional }
               />
@@ -134,8 +126,8 @@ UserHome.propTypes = {
   events: PropTypes.array.isRequired,
   feedbacks: PropTypes.array.isRequired,
   activities: PropTypes.array.isRequired,
+  currentDay: PropTypes.object.isRequired,
   fetchAuth: PropTypes.func.isRequired,
-  fetchProfessional: PropTypes.func.isRequired,
   fetchCurrentDay: PropTypes.func.isRequired,
   addActivity: PropTypes.func.isRequired
 }
@@ -146,14 +138,13 @@ const mapStateToProps = (state) => {
     events: state.auth.currentUser.events,
     feedbacks: state.day.currentDay.feedbacks,
     activities: state.day.currentDay.activities,
-    professional: state.professional.currentProfessional
+    currentDay: state.day.currentDay
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     ...authActions,
-    ...professionalActions,
     ...activityActions,
     ...feedbackActions,
     ...dayActions
