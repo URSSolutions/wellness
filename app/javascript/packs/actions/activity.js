@@ -2,7 +2,7 @@ import * as TYPES from './types'
 import API from '../services/api'
 import { showSpinner, hideSpinner } from './spinner'
 
-export const fetchActivities = (userId, subscriptionId, dayId) => {
+export const fetchActivities = (userId, subscriptionId, dayId = 1) => {
   return (dispatch) => {
     dispatch(showSpinner())
 
