@@ -23,7 +23,7 @@ class Api::FeedbacksController < Api::BaseController
   end
 
   def update
-    if @feedback.update(activity_params)
+    if @feedback.update(feedback_params)
       render json: @feedback
     else
       render json: @feedback.errors, status: :bad_request
