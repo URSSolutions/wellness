@@ -28,7 +28,7 @@ second_professional = Professional.create!(email: 'tricia@42.com', password: 'ab
 
 2.times do |event_number|
   puts 'Creating Event'
-  initial_date = (event_number + 1).month.ago
+  initial_date = 1.day.ago
   event = Event.create!(name: "Dieta da toalha de Ford #{event_number}", max_attendees: 20,
                         description: 'Use sua toalha(Da qual deveria estar com' +
                         ' você o tempo todo), para perder peso!', initial_date: initial_date,
