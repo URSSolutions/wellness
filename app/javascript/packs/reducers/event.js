@@ -22,6 +22,12 @@ export const event = (state = DEFAULT_STATE, action) => {
         currentEvent: {}
       }
 
+    case TYPES.RESET_EVENT:
+      return {
+        currentEvent: {},
+        events: []
+      }
+
     default:
       return state
   }

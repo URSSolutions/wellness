@@ -28,3 +28,15 @@ const fetchEventError = (error) => {
     error
   }
 }
+
+export const resetEvent = () => {
+  return (dispatch) => {
+    dispatch(resetEventSuccess())
+  }
+}
+
+const resetEventSuccess = () => {
+  return {
+    type: TYPES.RESET_EVENT
+  }
+}
