@@ -9,7 +9,7 @@ class Api::ActivitiesController < Api::BaseController
   end
 
   def create
-    activity = @day.build(activity_params)
+    activity = @day.activities.build(activity_params)
 
     if activity.save
       render json: activity
