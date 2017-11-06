@@ -47,6 +47,10 @@ class NewFeedback extends Component {
       })
   }
 
+  componentWillUnmount () {
+    this.props.resetEvent()
+  }
+
   getSubscription (eventId) {
     return this.props.user.subscriptions.find((subscription) => subscription.event_id === eventId)
   }
@@ -82,7 +86,6 @@ class NewFeedback extends Component {
 
   handleFeedbackSubmit (isFeedbackNew, description) {
     if (isFeedbackNew) {
-      console.log('e novo sim cumpadi');
       return this.handleAddFeedback(description)
     }
 
@@ -173,6 +176,7 @@ NewFeedback.propTypes = {
   event: PropTypes.object.isRequired,
   fetchAuth: PropTypes.func.isRequired,
   fetchEvent: PropTypes.func.isRequired,
+  resetEvent: PropTypes.func.isRequired,
   fetchUser: PropTypes.func.isRequired,
   fetchFeedbacks: PropTypes.func.isRequired,
   addFeedback: PropTypes.func.isRequired,
