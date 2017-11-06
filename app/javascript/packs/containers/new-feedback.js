@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import * as authActions from '../actions/auth'
 import * as eventsActions from '../actions/event'
 import * as feedbackActions from '../actions/feedback'
+import * as activityActions from '../actions/activity'
 import * as userActions from '../actions/user'
 
 import WeightChart from '../components/weight-chart'
@@ -44,7 +45,12 @@ class NewFeedback extends Component {
         this.setState( { subscription })
 
         this.handleFetchFeedbacks(userId, subscription.id, dayId)
+        this.props.fetchActivities(userId, subscription.id, dayId)
       })
+  }
+
+  componentWillUnmount () {
+    this.props.resetEvent()
   }
 
   getSubscription (eventId) {
@@ -82,7 +88,6 @@ class NewFeedback extends Component {
 
   handleFeedbackSubmit (isFeedbackNew, description) {
     if (isFeedbackNew) {
-      console.log('e novo sim cumpadi');
       return this.handleAddFeedback(description)
     }
 
@@ -145,14 +150,14 @@ class NewFeedback extends Component {
               </div>
             }
 
-            {/* {
-              this.isEmpty(props.user) &&
+            {
+              props.activities.length &&
               <li>
                 <ul className='collection-item'>
-                  <Activities activities={ props.user.activities } />
+                  <Activities activities={ props.activities } />
                 </ul>
               </li>
-            } */}
+            }
           </div>
 
           <WeightChart weights={ state.subscription.weights }/>
@@ -173,7 +178,9 @@ NewFeedback.propTypes = {
   event: PropTypes.object.isRequired,
   fetchAuth: PropTypes.func.isRequired,
   fetchEvent: PropTypes.func.isRequired,
+  resetEvent: PropTypes.func.isRequired,
   fetchUser: PropTypes.func.isRequired,
+  fetchActivities: PropTypes.func.isRequired,
   fetchFeedbacks: PropTypes.func.isRequired,
   addFeedback: PropTypes.func.isRequired,
   updateFeedback: PropTypes.func.isRequired,
@@ -185,7 +192,8 @@ const mapStateToProps = (state) => {
     auth: state.auth.currentProfessional,
     event: state.event.currentEvent,
     user: state.user,
-    feedbacks: state.feedback.feedbacks
+    feedbacks: state.feedback.feedbacks,
+    activities: state.activity.activities
   }
 }
 
@@ -194,6 +202,7 @@ const mapDispatchToProps = (dispatch) => {
     ...authActions,
     ...eventsActions,
     ...userActions,
+    ...activityActions,
     ...feedbackActions
   }, dispatch)
 }
