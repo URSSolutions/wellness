@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from '../actions/auth'
-import * as eventsActions from '../actions/events'
+import * as eventsActions from '../actions/event'
 
 import Header from './header'
 import Events from '../components/events'
@@ -43,7 +43,7 @@ ProfessionalHome.propTypes = {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth.currentProfessional,
-    events: state.events,
+    events: state.event.events,
   }
 }
 
