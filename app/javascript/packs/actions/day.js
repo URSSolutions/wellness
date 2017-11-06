@@ -8,7 +8,7 @@ export const fetchCurrentDay = (userId, subscriptionId, dayId) => {
 
     return API.get(`/api/users/${userId}/subscriptions/${subscriptionId}/current_day`)
       .then((response) => {
-        if (response.data ==! null) {
+        if (response.data) {
           return dispatch(fetchCurrentDaySuccess(response.data))
         }
 

@@ -27,7 +27,7 @@ const fetchActivitiesError = (error) => {
   }
 }
 
-export const addActivity = (userId, subscriptionId, dayId = 1, activity) => {
+export const addActivity = (userId, subscriptionId, dayId, activity) => {
   return (dispatch) => {
     dispatch(showSpinner())
 
