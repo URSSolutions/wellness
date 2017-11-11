@@ -11,6 +11,8 @@ import WeightChart from '../components/weight-chart'
 import Header from './header'
 import Activities from '../components/activities'
 import FeedbackForm from '../components/feedback-form'
+import UserCard from '../components/user-card'
+import EventCard from '../components/event-card'
 
 import { formatSimpleDate } from '../services/format-date'
 import { translateGender } from '../services/translate-gender'
@@ -116,34 +118,9 @@ class NewFeedback extends Component {
 
         <div className='user-home'>
           <div className='user-home__general-info'>
-            {
-              this.isEmpty(props.user) &&
-              <div className='collection'>
-                <div className='collection-item'>
-                  <h2 className='title'>Usuário: { `${props.user.first_name} ${ props.user.last_name }` }</h2>
+            <UserCard user={ props.user } />
 
-                  <p className='margin-top-triple'> Sexo: { translateGender(props.user.gender) } </p>
-                  <p> Data de nascimento: { formatSimpleDate(props.user.initial_date) } </p>
-                  <p> Altura: { props.user.height } </p>
-                  <p> Peso: { props.user.weight } </p>
-                </div>
-              </div>
-            }
-
-            {
-              props.event &&
-              <div className='collection'>
-                <div className='collection-item'>
-                  <h2> Evento: { props.event.name } </h2>
-
-                  <p className='margin-top-triple'>
-                    Data de início: { formatSimpleDate(props.event.initial_date) }
-                  </p>
-
-                  <p> Data de término: { formatSimpleDate(props.event.final_date) } </p>
-                </div>
-              </div>
-            }
+            <EventCard event={ props.event } />
 
             {/* {
               this.isEmpty(props.user) &&
