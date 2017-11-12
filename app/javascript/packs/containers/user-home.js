@@ -13,6 +13,8 @@ import Feedbacks from '../components/feedbacks'
 import Activities from '../components/activities'
 import UserEvents from '../components/user/events'
 
+import { formatSimpleDate } from '../services/format-date'
+
 class UserHome extends Component {
   constructor (props) {
     super(props)
@@ -66,6 +68,13 @@ class UserHome extends Component {
                 events={ props.events }
                 handleEvent={ this.handleEvent }
               />
+
+              {
+                props.currentDay.date &&
+                <h2 className='text-align-center margin-vertical-double'>
+                  Dia: { formatSimpleDate(props.currentDay.date) }
+                </h2>
+              }
             </div>
 
             <Feedbacks feedbacks={ props.feedbacks } />

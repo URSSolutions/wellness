@@ -20,7 +20,7 @@ const Feedbacks = ({ feedbacks }) => {
   return (
     <div className='user-home__feedback-container'>
 
-      <h2> Feedbacks: </h2>
+      <h2 className='user-home__name'> Feedbacks: </h2>
 
       { renderFeedback() }
     </div>

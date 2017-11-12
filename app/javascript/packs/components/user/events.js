@@ -43,8 +43,8 @@ class UserEvents extends Component {
 
         {
           this.state.event &&
-          <div>
-            <h2> Evento: { state.event.name } </h2>
+          <div className='margin-top-triple'>
+            <h2 className='user-home__name'> Evento: { state.event.name } </h2>
             <p> Descrição: { state.event.description } </p>
             <p> Data de início: { formatSimpleDate(state.event.inital_date) } </p>
             <p> Data de término: { formatSimpleDate(state.event.final_date) } </p>
