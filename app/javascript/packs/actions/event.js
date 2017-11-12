@@ -6,7 +6,7 @@ export const fetchEvent = (id) => {
   return (dispatch) => {
     dispatch(showSpinner())
 
-    return API.get(`/api/events/${id}`)
+    return API.get(`api/events/${id}`)
       .then((response) => {
         dispatch(fetchEventSuccess(response.data))
       })
