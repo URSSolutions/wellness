@@ -9,3 +9,7 @@ export const formatDate = (date) => {
 export const formatSimpleDate = (date) => {
   return moment(date).format('L')
 }
+
+export const formatHoursDate = (date) => {
+  return moment(date).format('LT')
+}
