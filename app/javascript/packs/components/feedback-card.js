@@ -1,25 +1,48 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { formatDate } from '../services/format-date'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as professionalActions from '../actions/professional'
 
-const FeedbackCard = ({ feedback }) => {
-  return (
-    <div className='card small user-home__feedback-card'>
-      <div className='card-content'>
-        <h3> { `${feedback.professional.first_name} ${feedback.professional.last_name}` } </h3>
-        <p> { feedback.professional.occupation } </p>
+import { formatHoursDate } from '../services/format-date'
 
-        <p className='user-home__feedback-date'> { formatDate(feedback.created_at) } </p>
+class FeedbackCard extends Component {
+  componentDidMount () {
+    this.props.fetchProfessional(this.props.feedback.professional_id)
+  }
 
-        <p> { feedback.description } </p>
+  render () {
+    const { props } = this
+
+    return (
+      <div className='card small user-home__feedback-card'>
+        <div className='card-content'>
+          <h3> { `${props.professional.first_name} ${props.professional.last_name}` } </h3>
+          <p> { props.professional.occupation } </p>
+
+          <p className='user-home__feedback-date'> Horário: { formatHoursDate(props.feedback.created_at) } </p>
+
+          <p> { props.feedback.description } </p>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 FeedbackCard.propTypes = {
   feedback: PropTypes.object.isRequired,
-  professional: PropTypes.object.isRequired
+  professional: PropTypes.object.isRequired,
+  fetchProfessional: PropTypes.func.isRequired
 }
 
-export default FeedbackCard
+const mapStateToProps = (state) => {
+  return {
+    professional: state.professional.currentProfessional
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(professionalActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FeedbackCard)

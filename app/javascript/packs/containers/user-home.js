@@ -68,14 +68,7 @@ class UserHome extends Component {
               />
             </div>
 
-            {
-              !!props.feedbacks.length &&
-              <Feedbacks
-                key={ index }
-                feedbacks={ props.feedbacks }
-                handleFetchProfessional={ this.handleFetchProfessional }
-              />
-            }
+            <Feedbacks feedbacks={ props.feedbacks } />
           </div>
 
           {
