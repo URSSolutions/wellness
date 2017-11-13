@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 import App from './app'
-import NewFeedback from '../containers/new-feedback'
+import ProfessionalDetail from '../containers/professional/detail'
 import Container from '../containers/container'
 
 const Root = ({ store }) => {
@@ -14,7 +14,7 @@ const Root = ({ store }) => {
       <Router>
         <div>
           <Route exact path='/app' component={ Container(App) } />
-          <Route path='/app/events/:eventId/users/:userId/feedback/new' component={ Container(NewFeedback) } />
+          <Route path='/app/events/:eventId/users/:userId/' component={ Container(ProfessionalDetail) } />
         </div>
       </Router>
     </Provider>

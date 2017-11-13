@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const User = ({ event, user }) => {
   return (
     <li className='collection-item'>
-      <Link to={`/app/events/${event.id}/users/${user.id}/feedback/new`} >
+      <Link to={`/app/events/${event.id}/users/${user.id}/`} >
         { `${user.first_name} ${user.last_name}` }
 
         <span className='secondary-content'>
