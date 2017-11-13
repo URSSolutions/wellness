@@ -25,6 +25,8 @@
   }
 
   &__general-info {
+    padding: 15px;
+
     @include tablet {
       display: flex;
       justify-content: space-between;
@@ -128,5 +130,24 @@
   &__photo-shoot {
     background: none;
     border: none;
+  }
+
+  &__events-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  &__event-button {
+    margin: 10px 0;
+  }
+
+  &__event-attribute {
+    margin: 15px 0 5px 0;
+
+    @include tablet {
+      margin: 10px 0 5px 0;
+    }
   }
 }

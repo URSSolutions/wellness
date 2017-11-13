@@ -60,7 +60,7 @@ class UserHome extends Component {
         <ActivityModal addActivity={ this.handleAddActivity } />
 
         <section className='user-home'>
-          <div className='user-home__general-info'>
+          <div className='card user-home__general-info'>
             <div>
               <h2 className='user-home__name'> Olá, { props.auth.first_name } </h2>
 

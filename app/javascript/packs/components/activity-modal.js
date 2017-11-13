@@ -65,62 +65,61 @@ class ActivityModal extends Component {
 
     return (
       <div>
-       <div id='modal1' className='modal'>
-         <div className='modal-content'>
-           <div className='row'>
-             <div className='input col s12'>
+        <div id='modal1' className='modal'>
+          <div className='modal-content'>
+            <div className='row'>
+              <div className='input col s12'>
+                <label htmlFor='category'> Categoria </label>
 
-               <label htmlFor='category'> Categoria </label>
+                <select
+                  className='browser-default'
+                  name='category'
+                  id='category'
+                  value={ state.category }
+                  onChange={ this.handleChange }>
 
-               <select
-                 className='browser-default'
-                 name='category'
-                 id='category'
-                 value={ state.category }
-                 onChange={ this.handleChange }>
+                  <option value=''> </option>
+                  <option value='meal'> Refeição </option>
+                  <option value='physical'> Exercício </option>
+                  <option value='weight'> Peso </option>
+                </select>
+              </div>
+            </div>
 
-                 <option value=''> </option>
-                 <option value='meal'> Refeição </option>
-                 <option value='physical'> Exercício </option>
-                 <option value='weight'> Peso </option>
-               </select>
-             </div>
-           </div>
+            {
+              state.category && state.category !== 'weight' &&
+              <div className='row'>
+                <div className='field col s12'>
+                  <label htmlFor='name'> Nome </label>
 
-           {
-             state.category && state.category !== 'weight' &&
-             <div className='row'>
-               <div className='field col s12'>
-                 <label htmlFor='name'> Nome </label>
+                  <input name='name' id='name' value={ state.name } onChange={ this.handleChange } />
+                </div>
+              </div>
+            }
 
-                 <input name='name' id='name' value={ state.name } onChange={ this.handleChange } />
-               </div>
-             </div>
-           }
+            {
+              state.category &&
+              <div className='row'>
+                <div className='field col s12'>
+                  <label htmlFor='description'> { state.category === 'weight'? 'Peso': 'Descrição' } </label>
 
-           {
-             state.category &&
-             <div className='row'>
-               <div className='field col s12'>
-                 <label htmlFor='description'> { state.category === 'weight'? 'Peso': 'Descrição' } </label>
+                  <textarea name='description' id='description' value={ state.description } onChange={ this.handleChange } />
+                </div>
+              </div>
+            }
 
-                 <textarea name='description' id='description' value={ state.description } onChange={ this.handleChange } />
-               </div>
-             </div>
-           }
+            {
+              state.category === 'meal' &&
+              <Photo handlePhoto={ this.handlePhoto } photo={ state.photo } />
+            }
+          </div>
 
-           {
-            state.category === 'meal' &&
-            <Photo handlePhoto={ this.handlePhoto } photo={ state.photo } />
-           }
-         </div>
+          <div className='modal-footer'>
+            <a href='#!' onClick={ this.resetState } className='modal-action modal-close waves-effect btn-flat '> Cancelar </a>
 
-         <div className='modal-footer'>
-           <a href='#!' onClick={ this.resetState } className='modal-action modal-close waves-effect btn-flat '> Cancelar </a>
-
-           <a href='#!' onClick={ this.handleSubmit } className='modal-action modal-close waves-effect btn-flat'> Enviar </a>
-         </div>
-       </div>
+            <a href='#!' onClick={ this.handleSubmit } className='modal-action modal-close waves-effect btn-flat'> Enviar </a>
+          </div>
+        </div>
       </div>
     )
   }
