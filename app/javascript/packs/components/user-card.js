@@ -4,8 +4,6 @@ import { formatSimpleDate } from '../services/format-date'
 import { translateGender } from '../services/translate-gender'
 
 const UserCard = ({ user }) => {
-  if (!user) return
-
   return (
     <div className='user-card collection'>
       <div className='user-card__container collection-item'>

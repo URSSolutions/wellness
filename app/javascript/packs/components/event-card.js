@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import { formatSimpleDate } from '../services/format-date'
 
 const EventCard = ({ event }) => {
-  if (!event) return
-
   return (
     <div className='user-card collection'>
       <div className='collection-item'>
