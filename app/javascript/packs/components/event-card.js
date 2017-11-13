@@ -4,7 +4,7 @@ import { formatSimpleDate } from '../services/format-date'
 
 const EventCard = ({ event }) => {
   return (
-    <div className='user-card collection'>
+    <div className='card user-card collection'>
       <div className='collection-item'>
         <h2 className='user-card__title'> Evento: { event.name } </h2>
 

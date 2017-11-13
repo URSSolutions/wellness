@@ -16,7 +16,7 @@ const WeightChart = ({ weights }) => {
   }
 
   return (
-    <div className="collection weight-chart">
+    <div className="card collection weight-chart">
       <span className="weight-chart__title">Histórico de Peso</span>
 
       <VictoryChart theme={ VictoryTheme.material }>

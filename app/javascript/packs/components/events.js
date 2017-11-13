@@ -19,7 +19,7 @@ const User = ({ event, user }) => {
 const Event = ({ event }) => {
   return (
     <li className="professional-events__list__item">
-      <ul className='collection with-header'>
+      <ul className='card collection with-header'>
         <li className='collection-header'><h4>{ event.name }</h4></li>
 
         { event.users.map((user, index) => <User key={ index } event={ event } user={ user } />) }
@@ -30,7 +30,7 @@ const Event = ({ event }) => {
 
 const Events = ({ events, auth }) => {
   return (
-    <div className="professional-events">
+    <div className="card professional-events">
       <h2 className='user-home__name'> Olá, { auth.first_name } </h2>
 
       <h2 className='user-home__name'> Eventos: </h2>

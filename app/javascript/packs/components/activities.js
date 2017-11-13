@@ -15,7 +15,7 @@ const Activities = ({ activities, toggleActivityInput }) => {
   }
 
   return (
-    <div className='user-home__activity-container'>
+    <div className='card user-home__activity-container'>
       <h2 className='user-home__name'> Atividades: </h2>
 
       {

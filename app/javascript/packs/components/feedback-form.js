@@ -39,7 +39,7 @@ class FeedbackForm extends Component {
 
   render () {
     return (
-      <div className='collection'>
+      <div className='card collection'>
         <div className='collection-item'>
 
           <h2 className='user-home__name'> Feedback </h2>
