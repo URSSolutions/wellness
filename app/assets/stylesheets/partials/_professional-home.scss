@@ -1,14 +1,16 @@
 .professional-events {
+  width: 100%;
+
   &__list {
     @include desktop {
       display: flex;
       flex-direction: row;
+      justify-content: space-between;
     }
 
     &__item {
       @include desktop {
-        min-width: 500px;
-        margin: 40px;
+        min-width: 48%;
       }
     }
   }

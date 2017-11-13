@@ -25,10 +25,9 @@
   }
 
   &__general-info {
-
-    @include desktop {
+    @include tablet {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       margin-top: 20px;
     }
   }

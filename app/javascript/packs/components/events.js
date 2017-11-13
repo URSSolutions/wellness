@@ -30,12 +30,12 @@ const Event = ({ event }) => {
 
 const Events = ({ events, auth }) => {
   return (
-    <div>
+    <div className="professional-events">
       <h2 className='user-home__name'> Olá, { auth.first_name } </h2>
 
       <h2 className='user-home__name'> Eventos: </h2>
 
-      <div className="professional-events">
+      <div>
         <ul className="professional-events__list">
           { events.map((event, index) => <Event key={ index } event={ event } />) }
         </ul>

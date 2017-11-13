@@ -1,0 +1,27 @@
+.user-card {
+  @include tablet {
+    width: 48%;
+  }
+
+  &__title {
+    margin: 15px 0;
+    font-size: 2rem;
+    font-family: "Roboto";
+
+    @include tablet {
+      font-size: 2.3rem;
+    }
+
+    @include desktop {
+      align-self: flex-start;
+    }
+  }
+
+  &__paragraph {
+    margin: 5px 0 !important;
+
+    &__margin-top{
+      margin-top: 1.5rem !important;
+    }
+  }
+}
