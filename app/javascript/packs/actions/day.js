@@ -2,11 +2,28 @@ import * as TYPES from './types'
 import API from '../services/api'
 import { showSpinner, hideSpinner } from './spinner'
 
-export const fetchCurrentDay = (userId, subscriptionId, dayId) => {
+export const fetchCurrentDay = (userId, subscriptionId) => {
   return (dispatch) => {
     dispatch(showSpinner())
 
     return API.get(`api/users/${userId}/subscriptions/${subscriptionId}/current_day`)
+      .then((response) => {
+        if (response.data) {
+          return dispatch(fetchCurrentDaySuccess(response.data))
+        }
+
+        dispatch(fetchCurrentDayError(response.data))
+      })
+      .catch((error) => dispatch(fetchCurrentDayError(error)))
+      .then(() => dispatch(hideSpinner()))
+  }
+}
+
+export const fetchDay = (userId, subscriptionId, dayId) => {
+  return (dispatch) => {
+    dispatch(showSpinner())
+
+    return API.get(`api/users/${userId}/subscriptions/${subscriptionId}/days/${dayId}`)
       .then((response) => {
         if (response.data) {
           return dispatch(fetchCurrentDaySuccess(response.data))
