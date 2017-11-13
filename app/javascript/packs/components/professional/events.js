@@ -28,7 +28,7 @@ const Event = ({ event }) => {
   )
 }
 
-const Events = ({ events, auth }) => {
+const ProfessionalEvents = ({ events, auth }) => {
   return (
     <div className="card professional-events">
       <h2 className='user-home__name'> Olá, { auth.first_name } </h2>
@@ -44,4 +44,4 @@ const Events = ({ events, auth }) => {
   )
 }
 
-export default Events
+export default ProfessionalEvents
