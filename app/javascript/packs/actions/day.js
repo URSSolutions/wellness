@@ -6,7 +6,7 @@ export const fetchCurrentDay = (userId, subscriptionId, dayId) => {
   return (dispatch) => {
     dispatch(showSpinner())
 
-    return API.get(`/api/users/${userId}/subscriptions/${subscriptionId}/current_day`)
+    return API.get(`api/users/${userId}/subscriptions/${subscriptionId}/current_day`)
       .then((response) => {
         if (response.data) {
           return dispatch(fetchCurrentDaySuccess(response.data))

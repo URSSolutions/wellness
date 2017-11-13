@@ -19,6 +19,7 @@ import { activity } from './reducers/activity'
 import { spinner } from './reducers/spinner'
 import { user } from './reducers/user'
 import { day } from './reducers/day'
+import { professional } from './reducers/professional'
 
 const reducers = combineReducers({
   auth,
@@ -27,7 +28,8 @@ const reducers = combineReducers({
   activity,
   spinner,
   user,
-  day
+  day,
+  professional
 })
 
 const enhancer = compose(

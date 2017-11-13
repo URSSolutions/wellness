@@ -6,7 +6,7 @@ export const fetchUser = (id) => {
   return (dispatch) => {
     dispatch(showSpinner())
 
-    return API.get(`/api/users/${id}`)
+    return API.get(`api/users/${id}`)
       .then((response) => {
         dispatch(fetchUserSuccess(response.data))
       })

@@ -6,7 +6,7 @@ export const fetchActivities = (userId, subscriptionId, dayId = 1) => {
   return (dispatch) => {
     dispatch(showSpinner())
 
-    return API.get(`/api/users/${userId}/subscriptions/${subscriptionId}/days/${dayId}/activities`)
+    return API.get(`api/users/${userId}/subscriptions/${subscriptionId}/days/${dayId}/activities`)
       .then((response) => dispatch(fetchActivitiesSuccess(response.data)))
       .catch((error) => dispatch(fetchActivitiesError(error)))
       .then(() => dispatch(hideSpinner()))
@@ -31,7 +31,7 @@ export const addActivity = (userId, subscriptionId, dayId, activity) => {
   return (dispatch) => {
     dispatch(showSpinner())
 
-    return API.post(`/api/users/${userId}/subscriptions/${subscriptionId}/days/${dayId}/activities/`, activity)
+    return API.post(`api/users/${userId}/subscriptions/${subscriptionId}/days/${dayId}/activities/`, activity)
       .then((response) => dispatch(addActivitySuccess(response.data)))
       .catch((error) => dispatch(addActivityError(error)))
       .then(() => dispatch(hideSpinner()))

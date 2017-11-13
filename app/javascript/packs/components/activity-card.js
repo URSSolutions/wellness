@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { formatDate } from '../services/format-date'
+import { formatHoursDate } from '../services/format-date'
 
 const handlePhoto = (activity) => {
   const photos = {
@@ -38,7 +38,7 @@ const ActivityCard = ({ activity }) => {
       <div className='card-content'>
         <p> { handleCategory(activity) } </p>
 
-        <p> { formatDate(activity.created_at) } </p>
+        <p> Horário: { formatHoursDate(activity.created_at) } </p>
 
         <p> { activity.description } </p>
       </div>

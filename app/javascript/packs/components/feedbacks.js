@@ -3,12 +3,10 @@ import PropTypes from 'prop-types'
 
 import FeedbackCard from '../components/feedback-card'
 
-const Feedbacks = (props) => {
+const Feedbacks = ({ feedbacks }) => {
   const renderFeedback = () => {
-    const { feedbacks } = this.props
-
     if (feedbacks.length) {
-      feedbacks.map((feedback, index) =>
+      return feedbacks.map((feedback, index) =>
         <FeedbackCard
           key={ index }
           feedback={ feedback }
@@ -22,7 +20,7 @@ const Feedbacks = (props) => {
   return (
     <div className='user-home__feedback-container'>
 
-      <h2> Última notificação: </h2>
+      <h2 className='user-home__name'> Feedbacks: </h2>
 
       { renderFeedback() }
     </div>

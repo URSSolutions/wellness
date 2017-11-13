@@ -6,7 +6,7 @@ export const fetchAuth = () => {
   return (dispatch) => {
     dispatch(showSpinner())
 
-    return API.get('/api/self')
+    return API.get('api/self')
       .then((response) => {
         if (response.data.class_name === 'User') {
           return dispatch(fetchUserSuccess(response.data))
@@ -44,7 +44,7 @@ export const dispatchAuthLogout = () => {
   return (dispatch) => {
     dispatch(showSpinner())
 
-    API.delete('/users/sign_out')
+    API.delete('users/sign_out')
       .then(() => window.location.replace('/'))
       .then(() => dispatch(dispatchAuthLogoutSuccess()))
       .catch((error) => dispatch(dispatchAuthLogoutError(error)))
