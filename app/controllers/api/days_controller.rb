@@ -3,7 +3,7 @@ class Api::DaysController < Api::BaseController
   before_action :load_subscription, only: [:index, :current]
 
   def index
-    render json: @subscription.days
+    render json: @subscription.days.pluck(:id, :date)
   end
 
   def show
