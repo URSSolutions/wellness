@@ -5,7 +5,7 @@ import { translateGender } from '../services/translate-gender'
 
 const UserCard = ({ user }) => {
   return (
-    <div className='user-card collection'>
+    <div className='card user-card collection'>
       <div className='user-card__container collection-item'>
         <h2 className='user-card__title'>{ `${user.first_name} ${ user.last_name }` }</h2>
 

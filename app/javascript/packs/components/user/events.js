@@ -24,17 +24,17 @@ class UserEvents extends Component {
 
         <p> Selecione o evento desejado: </p>
 
+        <div className="user-home__events-list">
         {
           !!props.events.length &&
           props.events.map((event, index) =>
             <button key={ index }
-              className='waves-effect waves-light btn blue lighten-1'
-              onClick={ () => this.handleEvent(event.id) }
-            >
+              className='user-home__event-button waves-effect waves-light btn blue lighten-1'
+              onClick={ () => this.handleEvent(event.id) }>
               { event.name }
-            </button>
-          )
+            </button>)
         }
+        </div>
 
         {
           !props.events.length &&
@@ -45,9 +45,9 @@ class UserEvents extends Component {
           this.state.event &&
           <div className='margin-top-triple'>
             <h2 className='user-home__name'> Evento: { state.event.name } </h2>
-            <p> Descrição: { state.event.description } </p>
-            <p> Data de início: { formatSimpleDate(state.event.inital_date) } </p>
-            <p> Data de término: { formatSimpleDate(state.event.final_date) } </p>
+            <p className='user-home__event-attribute'> Descrição: { state.event.description } </p>
+            <p className='user-home__event-attribute'> Data de início: { formatSimpleDate(state.event.inital_date) } </p>
+            <p className='user-home__event-attribute'> Data de término: { formatSimpleDate(state.event.final_date) } </p>
           </div>
         }
       </div>
