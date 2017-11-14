@@ -1,29 +1,30 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-// import BigCalendar from 'react-big-calendar'
 
 class CalendarDays extends Component {
   componentDidMount () {
-    //fetch days
-    // .then() => {}
-         this.findCurrentDay(this.findCurrentDay())
+    this.props.fetchDays(this.props.user.id, this.props.subscription.id)
+      .then(() => this.props.handleDay(this.findCurrentDay()))
   }
 
   findCurrentDay () {
-    // this.props.days
-    const days = [ { id: 1, date: '11/13/2017' }, { id: 2, date: '11/14/2017' }]
-    const day = days.find((day) => day.date === moment().format('L'))
+    const day = this.props.days.find((day) => moment(day[1]).format('L') === moment().format('L'))
 
-    this.props.handleDay(day)
+    return { id: day[0], date: day[1] }
   }
 
   render () {
     return (
-      <div>
-      </div>
+      <div> </div>
     )
   }
+}
+
+CalendarDays.propTypes = {
+  handleDay: PropTypes.func.isRequired,
+  fetchDays: PropTypes.func.isRequired,
+  days: PropTypes.array.isRequired
 }
 
 export default CalendarDays

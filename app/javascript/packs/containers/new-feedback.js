@@ -27,7 +27,7 @@ class NewFeedback extends Component {
   }
 
   componentDidMount () {
-    const {user, subscription, day } = this.props
+    const { user, subscription, day } = this.props
 
     this.handleFetchFeedbacks(user.id, subscription.id, day.id)
     this.props.fetchActivities(user.id, subscription.id, day.id)
@@ -50,7 +50,7 @@ class NewFeedback extends Component {
   }
 
   setIds () {
-    const subscriptionId = this.state.subscription.id
+    const subscriptionId = this.props.subscription.id
     const { match: { params: { userId, dayId } } } = this.props
     const feedbackId = this.state.feedback ? this.state.feedback.id : ''
     const professional_id = this.props.auth.id
@@ -97,7 +97,7 @@ class NewFeedback extends Component {
 
             {
               !!props.activities.length &&
-              <li>
+              <li className='list-style-none'>
                 <ul className='collection-item'>
                   <Activities activities={ props.activities } />
                 </ul>

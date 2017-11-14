@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 import * as authActions from '../../actions/auth'
 import * as eventsActions from '../../actions/event'
 import * as userActions from '../../actions/user'
+import * as dayActions from '../../actions/day'
 
 import CalendarDays from '../calendar-days'
 import NewFeedback from '../new-feedback'
@@ -47,11 +48,17 @@ class ProfessionalDetail extends Component {
 
     return (
       <div>
-        <CalendarDays
-          user={ props.user }
-          subscription={ state.subscription }
-          handleDay={ this.handleDay }
-        />
+        {
+          state.subscription &&
+          props.user &&
+          <CalendarDays
+            user={ props.user }
+            subscription={ state.subscription }
+            days={ props.days }
+            handleDay={ this.handleDay }
+            fetchDays ={ this.props.fetchDays }
+          />
+        }
 
         {
           state.subscription &&
@@ -77,6 +84,7 @@ ProfessionalDetail.propTypes = {
   fetchEvent: PropTypes.func.isRequired,
   resetEvent: PropTypes.func.isRequired,
   fetchUser: PropTypes.func.isRequired,
+  fetchDays: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => {
@@ -84,6 +92,7 @@ const mapStateToProps = (state) => {
     auth: state.auth.currentProfessional,
     event: state.event.currentEvent,
     user: state.user,
+    days: state.day.days
   }
 }
 
@@ -91,7 +100,8 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     ...authActions,
     ...eventsActions,
-    ...userActions
+    ...userActions,
+    ...dayActions
   }, dispatch)
 }
 
