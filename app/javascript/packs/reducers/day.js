@@ -5,6 +5,7 @@ const DEFAULT_STATE = {
     feedbacks: [],
     activities: []
   },
+  days: [],
   error: null
 }
 
@@ -19,6 +20,20 @@ export const day = (state = DEFAULT_STATE, action) => {
     case TYPES.FETCH_CURRENT_DAY_ERROR:
       return {
         ...state,
+        error: action.error
+      }
+
+    case TYPES.FETCH_DAYS_SUCCESS:
+      return {
+        ...state,
+        days: action.days,
+        error: null
+      }
+
+    case TYPES.FETCH_DAYS_ERROR:
+      return {
+        ...state,
+        days: [],
         error: action.error
       }
 
