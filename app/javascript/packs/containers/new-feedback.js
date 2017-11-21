@@ -2,11 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as authActions from '../actions/auth'
-import * as eventsActions from '../actions/event'
+
 import * as feedbackActions from '../actions/feedback'
 import * as activityActions from '../actions/activity'
-import * as userActions from '../actions/user'
 
 import WeightChart from '../components/weight-chart'
 import Header from './header'
@@ -22,45 +20,17 @@ class NewFeedback extends Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      user: {},
-      description: '',
-      feedback: {},
-      subscription: {}
-    }
+    this.state = { feedback: {} }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleFeedbackSubmit = this.handleFeedbackSubmit.bind(this)
   }
 
   componentDidMount () {
-    const { eventId, userId, dayId } = this.props.match.params
+    const { user, subscription, day } = this.props
 
-    this.props.fetchAuth()
-
-    this.props.fetchEvent(eventId)
-
-    this.props.fetchUser(userId)
-      .then(() => {
-        const subscription = this.getSubscription(+eventId)
-
-        this.setState( { subscription })
-
-        this.handleFetchFeedbacks(userId, subscription.id, dayId)
-        this.props.fetchActivities(userId, subscription.id, dayId)
-      })
-  }
-
-  componentWillUnmount () {
-    this.props.resetEvent()
-  }
-
-  getSubscription (eventId) {
-    return this.props.user.subscriptions.find((subscription) => subscription.event_id === eventId)
-  }
-
-  isEmpty (obj) {
-    return Object.keys(obj).length
+    this.handleFetchFeedbacks(user.id, subscription.id, day.id)
+    this.props.fetchActivities(user.id, subscription.id, day.id)
   }
 
   handleChange (event) {
@@ -80,7 +50,7 @@ class NewFeedback extends Component {
   }
 
   setIds () {
-    const subscriptionId = this.state.subscription.id
+    const subscriptionId = this.props.subscription.id
     const { match: { params: { userId, dayId } } } = this.props
     const feedbackId = this.state.feedback ? this.state.feedback.id : ''
     const professional_id = this.props.auth.id
@@ -102,7 +72,6 @@ class NewFeedback extends Component {
 
     this.props.addFeedback(userId, subscriptionId, dayId, data)
       .then(() => this.handleFetchFeedbacks(userId, subscriptionId, dayId))
-      .then(() => alert('Feedback criado!'))
   }
 
   handleUpdateFeedback (description) {
@@ -111,7 +80,6 @@ class NewFeedback extends Component {
 
     this.props.updateFeedback(userId, subscriptionId, dayId, feedbackId, data)
       .then(() => this.handleFetchFeedbacks(userId, subscriptionId, dayId))
-      .then(() => alert('Feedback atualizado!'))
   }
 
   render () {
@@ -128,8 +96,8 @@ class NewFeedback extends Component {
             <EventCard event={ props.event } />
 
             {
-              props.activities.length &&
-              <li>
+              !!props.activities.length &&
+              <li className='list-style-none'>
                 <ul className='collection-item'>
                   <Activities activities={ props.activities } />
                 </ul>
@@ -137,7 +105,7 @@ class NewFeedback extends Component {
             }
           </div>
 
-          <WeightChart weights={ state.subscription.weights }/>
+          <WeightChart weights={ props.subscription.weights }/>
 
           <FeedbackForm
             feedback={ state.feedback }
@@ -153,32 +121,23 @@ NewFeedback.propTypes = {
   auth: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   event: PropTypes.object.isRequired,
-  fetchAuth: PropTypes.func.isRequired,
-  fetchEvent: PropTypes.func.isRequired,
-  resetEvent: PropTypes.func.isRequired,
-  fetchUser: PropTypes.func.isRequired,
   fetchActivities: PropTypes.func.isRequired,
   fetchFeedbacks: PropTypes.func.isRequired,
   addFeedback: PropTypes.func.isRequired,
   updateFeedback: PropTypes.func.isRequired,
   feedbacks: PropTypes.array.isRequired,
+  day: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth.currentProfessional,
-    event: state.event.currentEvent,
-    user: state.user,
-    feedbacks: state.feedback.feedbacks,
-    activities: state.activity.activities
+    activities: state.activity.activities,
+    feedbacks: state.feedback.feedbacks
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    ...authActions,
-    ...eventsActions,
-    ...userActions,
     ...activityActions,
     ...feedbackActions
   }, dispatch)

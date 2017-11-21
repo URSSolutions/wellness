@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const User = ({ event, user }) => {
   return (
     <li className='collection-item'>
-      <Link to={`/app/events/${event.id}/users/${user.id}/feedback/new`} >
+      <Link to={`/app/events/${event.id}/users/${user.id}/`} >
         { `${user.first_name} ${user.last_name}` }
 
         <span className='secondary-content'>
@@ -28,7 +28,7 @@ const Event = ({ event }) => {
   )
 }
 
-const Events = ({ events, auth }) => {
+const ProfessionalEvents = ({ events, auth }) => {
   return (
     <div className="card professional-events">
       <h2 className='user-home__name'> Olá, { auth.first_name } </h2>
@@ -44,4 +44,4 @@ const Events = ({ events, auth }) => {
   )
 }
 
-export default Events
+export default ProfessionalEvents

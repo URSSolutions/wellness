@@ -6,7 +6,7 @@ import * as authActions from '../actions/auth'
 import * as eventsActions from '../actions/event'
 
 import Header from './header'
-import Events from '../components/events'
+import ProfessionalEvents from '../components/professional/events'
 
 class ProfessionalHome extends Component {
   componentDidMount () {
@@ -25,7 +25,7 @@ class ProfessionalHome extends Component {
           <div className='user-home__general-info'>
             {
               !!props.events.length &&
-              <Events events={ props.events } auth={ props.auth }/>
+              <ProfessionalEvents events={ props.events } auth={ props.auth } />
             }
           </div>
         </section>
