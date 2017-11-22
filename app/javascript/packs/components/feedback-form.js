@@ -16,12 +16,18 @@ class FeedbackForm extends Component {
     this.setDescription()
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.feedback.description !== this.props.feedback.description) {
+      this.setState({ description: nextProps.feedback.description })
+    }
+  }
+
   setDescription () {
     const { feedback } = this.props
     const { descriptionSetted } = this.state
 
     if (feedback && feedback.description && !descriptionSetted) {
-      this.setState({ description: feedback.description, descriptionSetted: true })
+      return this.setState({ description: feedback.description, descriptionSetted: true })
     }
   }
 
@@ -53,7 +59,6 @@ class FeedbackForm extends Component {
               value={ this.state.description }
               onChange={ this.handleChange }>
             </textarea>
-            <label htmlFor='textarea1'>Digite um feedback sobre o dia de hoje para o usuário!</label>
           </div>
 
           <div className='col s4'>

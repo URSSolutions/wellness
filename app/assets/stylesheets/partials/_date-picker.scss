@@ -1,0 +1,48 @@
+.date-picker-wrapper {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 50vh;
+  padding: 20px;
+}
+
+.SingleDatePicker {
+  width: 100%;
+
+  &__picker {
+    z-index: 11;
+  }
+
+  .DateInput {
+    display: none;
+  }
+
+  .SingleDatePickerInput {
+    display: none;
+  }
+
+  .DateInput {
+    display: none;
+  }
+
+  .CalendarDay__selected,
+  .CalendarDay__selected:active,
+  .CalendarDay__selected:hover {
+    background: $light-blue;
+    border: none;
+  }
+
+  .SingleDatePicker {
+    width: auto;
+  }
+
+  .SingleDatePicker_picker {
+    position: static;
+  }
+
+  .SingleDatePicker_picker__openDown {
+    top: 0;
+  }
+}
