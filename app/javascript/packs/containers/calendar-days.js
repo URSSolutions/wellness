@@ -7,6 +7,8 @@ import 'react-dates/lib/css/_datepicker.css'
 
 import 'react-dates/initialize'
 
+moment.locale('pt-br')
+
 class CalendarDays extends Component {
   constructor (props) {
     super(props)
