@@ -18,7 +18,7 @@ const Feedbacks = ({ feedbacks }) => {
   }
 
   return (
-    <div className='user-home__feedback-container'>
+    <div className='user-home__activity-container'>
 
       <h2 className='user-home__name'> Feedbacks: </h2>
 
