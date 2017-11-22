@@ -2,21 +2,75 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 
+import { SingleDatePicker } from 'react-dates'
+import 'react-dates/lib/css/_datepicker.css'
+
+import 'react-dates/initialize'
+
 class CalendarDays extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = { date: moment() }
+
+    this.isOutsideRange = this.isOutsideRange.bind(this)
+    this.handleDateChange = this.handleDateChange.bind(this)
+  }
+
   componentDidMount () {
     this.props.fetchDays(this.props.user.id, this.props.subscription.id)
       .then(() => this.props.handleDay(this.findCurrentDay()))
   }
 
-  findCurrentDay () {
-    const day = this.props.days.find((day) => moment(day[1]).format('L') === moment().format('L'))
+  findCurrentDay (currentDay = moment()) {
+    const day = this.findDay(currentDay)
+
+    this.setState({ date: moment(day[1]) })
 
     return { id: day[0], date: day[1] }
   }
 
+  handleDateChange (date) {
+    this.props.handleDay(this.findCurrentDay(date))
+  }
+
+  isOutsideRange (currentDay) {
+    const day = this.findDay(currentDay)
+
+    if (day && day.length) {
+      return false
+    }
+
+    return true
+  }
+
+  findDay (currentDay) {
+    return this.props.days.find((day) => moment(day[1]).format('L') === currentDay.format('L'))
+  }
+
   render () {
     return (
-      <div> </div>
+      <div>
+        {
+          this.props.days.length &&
+          <div className='date-picker-wrapper'>
+            <h2 className='user-card__title'> Selecione algum dia anterior </h2>
+
+            <SingleDatePicker
+              focused
+              date={ this.state.date }
+              onDateChange={ this.handleDateChange }
+              onFocusChange={ () => {} }
+              isOutsideRange={ this.isOutsideRange }
+              numberOfMonths={ 1}
+              hideKeyboardShortcutsPanel
+              displayFormat={ () => moment.localeData('pt-br').longDateFormat('L') }
+              monthFormat='MMMM YYYY'
+              readOnly
+            />
+          </div>
+        }
+      </div>
     )
   }
 }
