@@ -6,7 +6,7 @@ import ActivityCard from '../components/activity-card'
 const Activities = ({ activities, toggleActivityInput }) => {
   const renderActivities = () => {
     if (activities.length) {
-      return activities.map((activity, index) =>
+      return activities.reverse().map((activity, index) =>
         <ActivityCard key={ index } activity={ activity } />
       )
     }
