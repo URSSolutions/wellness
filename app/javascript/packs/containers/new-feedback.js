@@ -7,11 +7,8 @@ import * as feedbackActions from '../actions/feedback'
 import * as activityActions from '../actions/activity'
 
 import WeightChart from '../components/weight-chart'
-import Header from './header'
 import Activities from '../components/activities'
 import FeedbackForm from '../components/feedback-form'
-import UserCard from '../components/user-card'
-import EventCard from '../components/event-card'
 
 import { formatSimpleDate } from '../services/format-date'
 import { translateGender } from '../services/translate-gender'
@@ -26,11 +23,21 @@ class NewFeedback extends Component {
     this.handleFeedbackSubmit = this.handleFeedbackSubmit.bind(this)
   }
 
-  componentDidMount () {
+  fetchDayData () {
     const { user, subscription, day } = this.props
 
     this.handleFetchFeedbacks(user.id, subscription.id, day.id)
     this.props.fetchActivities(user.id, subscription.id, day.id)
+  }
+
+  componentDidMount () {
+    this.fetchDayData()
+  }
+
+  componentDidUpdate (prevProps) {
+    if (prevProps.day.id !== this.props.day.id) {
+      this.fetchDayData()
+    }
   }
 
   handleChange (event) {
@@ -51,7 +58,8 @@ class NewFeedback extends Component {
 
   setIds () {
     const subscriptionId = this.props.subscription.id
-    const { match: { params: { userId, dayId } } } = this.props
+    const userId = this.props.user.id
+    const dayId = this.props.day.id
     const feedbackId = this.state.feedback ? this.state.feedback.id : ''
     const professional_id = this.props.auth.id
 
@@ -87,13 +95,8 @@ class NewFeedback extends Component {
 
     return (
       <section>
-        <Header />
-
         <div className='user-home'>
           <div className='user-home__general-info'>
-            <UserCard user={ props.user } />
-
-            <EventCard event={ props.event } />
 
             {
               !!props.activities.length &&

@@ -8,8 +8,11 @@ import * as eventsActions from '../../actions/event'
 import * as userActions from '../../actions/user'
 import * as dayActions from '../../actions/day'
 
+import UserCard from '../../components/user-card'
+import EventCard from '../../components/event-card'
 import CalendarDays from '../calendar-days'
 import NewFeedback from '../new-feedback'
+import Header from '../header'
 
 class ProfessionalDetail extends Component {
   constructor () {
@@ -48,6 +51,14 @@ class ProfessionalDetail extends Component {
 
     return (
       <div>
+        <Header />
+
+        <div className='user-home'>
+          <UserCard user={ props.user } />
+
+          <EventCard event={ props.event } />
+        </div>
+
         {
           state.subscription &&
           props.user &&
