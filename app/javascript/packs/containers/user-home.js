@@ -2,16 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as authActions from '../actions/auth'
 import * as activityActions from '../actions/activity'
 import * as feedbackActions from '../actions/feedback'
-import * as dayActions from '../actions/day'
 
-import Header from './header'
 import ActivityModal from '../components/activity-modal'
 import Feedbacks from '../components/feedbacks'
 import Activities from '../components/activities'
-import UserEvents from '../components/user/events'
 
 import { formatSimpleDate } from '../services/format-date'
 
@@ -20,34 +16,32 @@ class UserHome extends Component {
     super(props)
 
     this.handleAddActivity = this.handleAddActivity.bind(this)
-    this.handleFetchCurrentDay = this.handleFetchCurrentDay.bind(this)
-    this.handleEvent = this.handleEvent.bind(this)
   }
 
   componentDidMount () {
-    this.props.fetchAuth()
+    this.fetchDayData(this.props.day.id)
 
     $('.modal').modal()
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (this.props.day.id !== nextProps.day.id) {
+      this.fetchDayData(nextProps.day.id)
+    }
+  }
+
+  fetchDayData (dayId = this.props.day.id) {
+    const { auth, subscription } = this.props
+
+    this.props.fetchFeedbacks(auth.id, subscription.id, dayId)
+    this.props.fetchActivities(auth.id, subscription.id, dayId)
+  }
+
   handleAddActivity (activity) {
-    const { addActivity, auth, currentDay } = this.props
-    const { eventId, subscription } = this.state
+    const { addActivity, auth, day, subscription, eventId } = this.props
 
-    addActivity(auth.id, subscription.id, currentDay.id, { ...activity, event_id: eventId })
-      .then(() => this.handleFetchCurrentDay(subscription))
-  }
-
-  handleEvent (eventId) {
-    const subscription = this.props.auth.subscriptions.find((subscription) => subscription.event_id === eventId)
-
-    this.setState({ eventId, subscription })
-
-    this.handleFetchCurrentDay(subscription)
-  }
-
-  handleFetchCurrentDay (subscription) {
-    this.props.fetchCurrentDay(this.props.auth.id, subscription.id)
+    addActivity(auth.id, subscription.id, day.id, { ...activity, event_id: eventId })
+      .then(() => this.fetchDayData())
   }
 
   render () {
@@ -55,28 +49,10 @@ class UserHome extends Component {
 
     return (
       <div>
-        <Header />
-
         <ActivityModal addActivity={ this.handleAddActivity } />
 
         <section className='user-home'>
           <div className='card user-home__general-info'>
-            <div>
-              <h2 className='user-home__name'> Olá, { props.auth.first_name } </h2>
-
-              <UserEvents
-                events={ props.events }
-                handleEvent={ this.handleEvent }
-              />
-
-              {
-                props.currentDay.date &&
-                <h2 className='text-align-center margin-vertical-double'>
-                  Dia: { formatSimpleDate(props.currentDay.date) }
-                </h2>
-              }
-            </div>
-
             <Feedbacks feedbacks={ props.feedbacks } />
           </div>
 
@@ -95,31 +71,26 @@ class UserHome extends Component {
 
 UserHome.propTypes = {
   auth: PropTypes.object.isRequired,
-  events: PropTypes.array.isRequired,
+  eventId: PropTypes.number.isRequired,
+  subscription: PropTypes.object.isRequired,
   feedbacks: PropTypes.array.isRequired,
-  activities: PropTypes.array.isRequired,
-  currentDay: PropTypes.object.isRequired,
-  fetchAuth: PropTypes.func.isRequired,
-  fetchCurrentDay: PropTypes.func.isRequired,
+  fetchActivities: PropTypes.func.isRequired,
+  fetchFeedbacks: PropTypes.func.isRequired,
+  activities: PropTypes.array,
   addActivity: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth.currentUser,
-    events: state.auth.currentUser.events,
-    feedbacks: state.day.currentDay.feedbacks,
-    activities: state.day.currentDay.activities,
-    currentDay: state.day.currentDay
+    activities: state.activity.activities,
+    feedbacks: state.feedback.feedbacks
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    ...authActions,
     ...activityActions,
-    ...feedbackActions,
-    ...dayActions
+    ...feedbackActions
   }, dispatch)
 }
 
