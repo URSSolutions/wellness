@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { verifyAuthType } from '../services/verify-auth-type'
 
-import UserHome from '../containers/user-home'
+import UserDetail from '../containers/user/detail'
 import ProfessionalHome from '../containers/professional-home'
 
 class App extends Component {
@@ -21,7 +21,7 @@ class App extends Component {
 
   handleUserType () {
     if (this.state.isUser) {
-      return <UserHome />
+      return <UserDetail />
     }
 
     return <ProfessionalHome />

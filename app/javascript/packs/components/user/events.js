@@ -18,22 +18,25 @@ class UserEvents extends Component {
 
   render () {
     const { state, props } = this
+
     return (
       <div>
-        <h2 className='user-home__name'> Eventos: </h2>
+        <div className='card'>
+          <div className='card-content'>
+            <h2 className='user-home__name'> Eventos: </h2>
 
-        <p> Selecione o evento desejado: </p>
-
-        <div className="user-home__events-list">
-        {
-          !!props.events.length &&
-          props.events.map((event, index) =>
-            <button key={ index }
-              className='user-home__event-button waves-effect waves-light btn blue lighten-1'
-              onClick={ () => this.handleEvent(event.id) }>
-              { event.name }
-            </button>)
-        }
+            <div className="user-home__events-list">
+              {
+                !!props.events.length &&
+                props.events.map((event, index) =>
+                  <button key={ index }
+                    className='user-home__event-button waves-effect waves-light btn blue lighten-1'
+                    onClick={ () => this.handleEvent(event.id) }>
+                    { event.name }
+                  </button>)
+              }
+            </div>
+          </div>
         </div>
 
         {
@@ -43,11 +46,13 @@ class UserEvents extends Component {
 
         {
           this.state.event &&
-          <div className='margin-top-triple'>
-            <h2 className='user-home__name'> Evento: { state.event.name } </h2>
-            <p className='user-home__event-attribute'> Descrição: { state.event.description } </p>
-            <p className='user-home__event-attribute'> Data de início: { formatSimpleDate(state.event.inital_date) } </p>
-            <p className='user-home__event-attribute'> Data de término: { formatSimpleDate(state.event.final_date) } </p>
+          <div className='card'>
+            <div className='card-content'>
+              <h2 className='user-home__name'> Evento: { state.event.name } </h2>
+              <p className='user-home__event-attribute'> Descrição: { state.event.description } </p>
+              <p className='user-home__event-attribute'> Data de início: { formatSimpleDate(state.event.inital_date) } </p>
+              <p className='user-home__event-attribute'> Data de término: { formatSimpleDate(state.event.final_date) } </p>
+            </div>
           </div>
         }
       </div>
