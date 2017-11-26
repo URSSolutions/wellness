@@ -9,12 +9,10 @@ const Container = (ComposedComponent) => {
   class ContainerComponent extends Component {
     render () {
       return (
-        <div>
+        <div className={`${!!this.props.spinner ? 'loading' : '' }`}>
           {
             !!this.props.spinner &&
-            <div className='spinner-container'>
-              <Spinner fadeIn='none' name='folding-cube' />
-            </div>
+            <i className="loader fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
           }
 
           <ComposedComponent {...this.props} />
