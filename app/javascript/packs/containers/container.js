@@ -3,8 +3,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import Spinner from 'react-spinkit'
-
 const Container = (ComposedComponent) => {
   class ContainerComponent extends Component {
     render () {
