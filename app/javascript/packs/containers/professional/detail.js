@@ -50,10 +50,10 @@ class ProfessionalDetail extends Component {
     const { props, state } = this
 
     return (
-      <div>
+      <div className="component-container">
         <Header />
 
-        <div className='user-home'>
+        <div className='user-home component-item component-item__general-info'>
           <UserCard user={ props.user } />
 
           <EventCard event={ props.event } />

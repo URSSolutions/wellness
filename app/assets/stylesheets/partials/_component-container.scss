@@ -1,0 +1,18 @@
+.component {
+  &-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &-item {
+    width: 100%;
+
+    &__general-info {
+      @include tablet {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  }
+}
