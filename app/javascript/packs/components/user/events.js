@@ -22,7 +22,7 @@ class UserEvents extends Component {
     return (
       <div className='user-home'>
         <div className='component-item'>
-          <h2 className='user-home__name'> Eventos: </h2>
+          <h2 className='user-home__name text-align-center'> Eventos </h2>
       
           <div className="user-home__events-list">
             {

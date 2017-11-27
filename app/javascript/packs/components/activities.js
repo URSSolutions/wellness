@@ -16,7 +16,7 @@ const Activities = ({ activities, toggleActivityInput }) => {
 
   return (
     <div>
-      <h2 className='user-home__name'> Atividades: </h2>
+      <h2 className='user-home__name'> Atividades </h2>
       
       {
         toggleActivityInput &&

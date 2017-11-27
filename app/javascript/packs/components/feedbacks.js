@@ -33,7 +33,7 @@ class Feedbacks extends Component {
   render () {
     return (
       <div>
-        <h2 className='user-home__name'> Feedbacks: </h2>
+        <h2 className='user-home__name'> Feedbacks </h2>
         
         <div className='card user-home__general-info'>
           <div className='user-home__activity-container'>
