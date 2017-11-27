@@ -28,6 +28,8 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :events, only: [:show, :index]
+    resources :events, only: [:show, :index] do
+      resources :professionals, only: [:show, :index]
+    end
   end
 end
