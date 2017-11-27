@@ -45,10 +45,11 @@ class FeedbackForm extends Component {
 
   render () {
     return (
+      <div>
+      <h2 className='user-home__name'> Feedback </h2>
       <div className='card collection'>
         <div className='collection-item'>
 
-          <h2 className='user-home__name'> Feedback </h2>
 
           <div className='input-field col s10 margin-top-triple'>
             <textarea
@@ -67,6 +68,7 @@ class FeedbackForm extends Component {
             </button>
           </div>
         </div>
+      </div>
       </div>
     )
   }

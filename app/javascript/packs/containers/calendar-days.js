@@ -55,8 +55,8 @@ class CalendarDays extends Component {
       <div className="user-home component-item">
         {
           this.props.days.length &&
-          <div className='card collection date-picker-wrapper'>
-            <h2 className='user-card__title data-title'> Selecione algum dia </h2>
+          <div className='date-picker-wrapper'>
+            <h2 className='user-home__name data-title padding-bottom-double'> Selecione algum dia </h2>
 
             <div className="data-container">
               <SingleDatePicker

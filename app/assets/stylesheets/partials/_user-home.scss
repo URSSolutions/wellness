@@ -16,15 +16,16 @@
 
   &__name {
     font-size: 2rem;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 
     @include tablet {
       font-size: 2.3rem;
     }
 
     @include desktop {
-      margin-bottom: 30px;
+      margin-top: 40px;
+      margin-bottom: 40px;
     }
   }
 
@@ -39,10 +40,13 @@
 
   &__feedback-card.card.small {
     height: 200px;
+    width: 95%;
     font-size: 1.2rem;
 
     @include tablet {
       width: 500px;
+      margin-left: 30px;
+      margin-right: 30px;
     }
 
     .user-home__feedback-date {
@@ -80,9 +84,13 @@
   }
 
   &__activities {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
     @include tablet {
-      display: flex;
+      flex-direction: row;
       flex-wrap: wrap;
     }
   }
@@ -112,14 +120,9 @@
     font-size: 1.2rem;
 
     @include tablet {
-      margin-left: 10px;
-      margin-right: 10px;
+      margin-left: 30px;
+      margin-right: 30px;
       width: 300px;
-    }
-
-    @include desktop {
-      margin-left: 20px;
-      margin-right: 20px;
     }
 
     .user-home__activity-card-title {

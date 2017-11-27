@@ -20,22 +20,20 @@ class UserEvents extends Component {
     const { state, props } = this
 
     return (
-      <div>
-        <div className='card'>
-          <div className='card-content'>
-            <h2 className='user-home__name'> Eventos: </h2>
-
-            <div className="user-home__events-list">
-              {
-                !!props.events.length &&
-                props.events.map((event, index) =>
-                  <button key={ index }
-                    className='user-home__event-button waves-effect waves-light btn blue lighten-1'
-                    onClick={ () => this.handleEvent(event.id) }>
-                    { event.name }
-                  </button>)
-              }
-            </div>
+      <div className='user-home'>
+        <div className='component-item'>
+          <h2 className='user-home__name text-align-center'> Eventos </h2>
+      
+          <div className="user-home__events-list">
+            {
+              !!props.events.length &&
+              props.events.map((event, index) =>
+                <button key={ index }
+                  className='user-home__event-button waves-effect waves-light btn blue lighten-1'
+                  onClick={ () => this.handleEvent(event.id) }>
+                  { event.name }
+                </button>)
+            }
           </div>
         </div>
 
@@ -46,9 +44,9 @@ class UserEvents extends Component {
 
         {
           this.state.event &&
-          <div className='card'>
+          <div className='card margin-top-triple'>
             <div className='card-content'>
-              <h2 className='user-home__name'> Evento: { state.event.name } </h2>
+              <h2 className='user-card__title'> Evento: { state.event.name } </h2>
               <p className='user-home__event-attribute'> Descrição: { state.event.description } </p>
               <p className='user-home__event-attribute'> Data de início: { formatSimpleDate(state.event.inital_date) } </p>
               <p className='user-home__event-attribute'> Data de término: { formatSimpleDate(state.event.final_date) } </p>

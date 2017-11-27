@@ -15,22 +15,24 @@ const Activities = ({ activities, toggleActivityInput }) => {
   }
 
   return (
-    <div className='card user-home__activity-container'>
-      <h2 className='user-home__name'> Atividades: </h2>
-
+    <div>
+      <h2 className='user-home__name'> Atividades </h2>
+      
       {
         toggleActivityInput &&
         <a className="modal-trigger" href="#modal1">
           <span className="user-home__activity-add"> Enviar nova atividade </span>
 
-          <div className="btn-floating btn-large waves-effect waves-light red">
+          <div className="btn-floating btn-large waves-effect waves-light red margin-vertical">
             <i className="material-icons">add</i>
           </div>
         </a>
       }
 
-      <div className='user-home__activities'>
-        { renderActivities() }
+      <div className='card user-home__activity-container'>        
+        <div className='user-home__activities'>
+          { renderActivities() }
+        </div>
       </div>
     </div>
   )

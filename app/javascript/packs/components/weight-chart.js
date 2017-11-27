@@ -16,16 +16,20 @@ const WeightChart = ({ weights }) => {
   }
 
   return (
-    <div className="card collection weight-chart">
-      <span className="weight-chart__title">Histórico de Peso</span>
+    <div>
+      <h3 className="user-home__name">Histórico de Peso</h3>
+      
+      <div className="card collection weight-chart">
 
-      <VictoryChart theme={ VictoryTheme.material }>
-        <VictoryLine data={ lineData() }
-                     style={ { data: { stroke: "#088ff0" } } } />
-      </VictoryChart>
+        <VictoryChart theme={ VictoryTheme.material }>
+          <VictoryLine data={ lineData() }
+                      style={ { data: { stroke: "#088ff0" } } } />
+        </VictoryChart>
 
-      <p className="weight-chart__observation">Peso x Dias passados de evento</p>
-    </div>)
+        <p className="weight-chart__observation">Peso x Dias passados de evento</p>
+      </div>
+    </div>
+  )
 }
 
 export default WeightChart
