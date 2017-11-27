@@ -48,10 +48,10 @@ class UserHome extends Component {
     const { state, props } = this
 
     return (
-      <div>
+      <div className="user-home component-item">
         <ActivityModal addActivity={ this.handleAddActivity } />
 
-        <section className='user-home component-item'>
+        <section>
           <div className='card user-home__general-info'>
             <Feedbacks feedbacks={ props.feedbacks } />
           </div>
