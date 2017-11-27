@@ -46,14 +46,12 @@ class UserDetail extends Component {
         <Header />
 
         <div className="component-container">
-          <div className='user-home component-item'>
-            <UserEvents
-              events={ props.events }
-              handleEvent={ this.handleEvent }
-              auth={ props.auth }
-              day={ state.day }
-            />
-          </div>
+          <UserEvents
+            events={ props.events }
+            handleEvent={ this.handleEvent }
+            auth={ props.auth }
+            day={ state.day }
+          />
 
           {
             state.subscription &&

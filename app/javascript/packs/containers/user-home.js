@@ -52,9 +52,7 @@ class UserHome extends Component {
         <ActivityModal addActivity={ this.handleAddActivity } />
 
         <section>
-          <div className='card user-home__general-info'>
-            <Feedbacks feedbacks={ props.feedbacks } eventId={ props.eventId } />
-          </div>
+          <Feedbacks feedbacks={ props.feedbacks } eventId={ props.eventId } />
 
           {
             !!props.activities &&

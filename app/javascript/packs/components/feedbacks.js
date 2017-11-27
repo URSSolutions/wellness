@@ -17,7 +17,7 @@ class Feedbacks extends Component {
   }
 
   renderFeedback () {
-    if (this.props.feedbacks.length) {
+    if (this.props.feedbacks.length && this.props.professionals.length) {
       return this.props.feedbacks.map((feedback, index) =>
         <FeedbackCard
           key={ index }
@@ -32,11 +32,16 @@ class Feedbacks extends Component {
 
   render () {
     return (
-      <div className='user-home__activity-container'>
-  
+      <div>
         <h2 className='user-home__name'> Feedbacks: </h2>
-  
-        { this.renderFeedback() }
+        
+        <div className='card user-home__general-info'>
+          <div className='user-home__activity-container'>
+            <div className='user-home__activities'>
+              { this.renderFeedback() }
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
