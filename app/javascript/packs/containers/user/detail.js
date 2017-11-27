@@ -45,39 +45,41 @@ class UserDetail extends Component {
       <div>
         <Header />
 
-        <div className='user-home'>
-          <UserEvents
-            events={ props.events }
-            handleEvent={ this.handleEvent }
-            auth={ props.auth }
-            day={ state.day }
-          />
+        <div className="component-container">
+          <div className='user-home component-item'>
+            <UserEvents
+              events={ props.events }
+              handleEvent={ this.handleEvent }
+              auth={ props.auth }
+              day={ state.day }
+            />
+          </div>
+
+          {
+            state.subscription &&
+            props.auth &&
+            <CalendarDays
+              user={ props.auth }
+              subscription={ state.subscription }
+              days={ props.days }
+              handleDay={ this.handleDay }
+              fetchDays={ this.props.fetchDays }
+            />
+          }
+
+          {
+            state.subscription &&
+            state.day &&
+            state.eventId &&
+            <UserHome
+              auth={ props.auth }
+              user={ props.user }
+              eventId={ state.eventId }
+              subscription={ state.subscription }
+              day={ state.day }
+            />
+          }
         </div>
-
-        {
-          state.subscription &&
-          props.auth &&
-          <CalendarDays
-            user={ props.auth }
-            subscription={ state.subscription }
-            days={ props.days }
-            handleDay={ this.handleDay }
-            fetchDays={ this.props.fetchDays }
-          />
-        }
-
-        {
-          state.subscription &&
-          state.day &&
-          state.eventId &&
-          <UserHome
-            auth={ props.auth }
-            user={ props.user }
-            eventId={ state.eventId }
-            subscription={ state.subscription }
-            day={ state.day }
-          />
-        }
       </div>
     )
   }

@@ -90,7 +90,7 @@ class ActivityModal extends Component {
               state.category && state.category !== 'weight' &&
               <div className='row'>
                 <div className='field col s12'>
-                  <label htmlFor='name'> Nome </label>
+                  <label htmlFor='name'> Nome * </label>
 
                   <input name='name' id='name' value={ state.name } onChange={ this.handleChange } />
                 </div>
@@ -101,7 +101,7 @@ class ActivityModal extends Component {
               state.category &&
               <div className='row'>
                 <div className='field col s12'>
-                  <label htmlFor='description'> { state.category === 'weight'? 'Peso': 'Descrição' } </label>
+                  <label htmlFor='description'> { state.category === 'weight'? 'Peso *': 'Descrição' } </label>
 
                   <textarea name='description' id='description' value={ state.description } onChange={ this.handleChange } />
                 </div>

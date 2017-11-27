@@ -52,24 +52,26 @@ class CalendarDays extends Component {
 
   render () {
     return (
-      <div>
+      <div className="user-home component-item">
         {
           this.props.days.length &&
-          <div className='date-picker-wrapper'>
-            <h2 className='user-card__title'> Selecione algum dia </h2>
+          <div className='card collection date-picker-wrapper'>
+            <h2 className='user-card__title data-title'> Selecione algum dia </h2>
 
-            <SingleDatePicker
-              focused
-              date={ this.state.date }
-              onDateChange={ this.handleDateChange }
-              onFocusChange={ () => {} }
-              isOutsideRange={ this.isOutsideRange }
-              numberOfMonths={ 1}
-              hideKeyboardShortcutsPanel
-              displayFormat={ () => moment.localeData('pt-br').longDateFormat('L') }
-              monthFormat='MMMM YYYY'
-              readOnly
-            />
+            <div className="data-container">
+              <SingleDatePicker
+                focused
+                date={ this.state.date }
+                onDateChange={ this.handleDateChange }
+                onFocusChange={ () => {} }
+                isOutsideRange={ this.isOutsideRange }
+                numberOfMonths={ 1 }
+                hideKeyboardShortcutsPanel
+                displayFormat={ () => moment.localeData('pt-br').longDateFormat('L') }
+                monthFormat='MMMM YYYY'
+                readOnly
+              />
+            </div>
           </div>
         }
       </div>

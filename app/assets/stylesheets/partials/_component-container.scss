@@ -1,0 +1,20 @@
+.component {
+  &-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #e6f3fd;
+  }
+
+  &-item {
+    width: 100%;
+
+    &__general-info {
+      @include tablet {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  }
+}
