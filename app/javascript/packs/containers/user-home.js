@@ -53,7 +53,7 @@ class UserHome extends Component {
 
         <section>
           <div className='card user-home__general-info'>
-            <Feedbacks feedbacks={ props.feedbacks } />
+            <Feedbacks feedbacks={ props.feedbacks } eventId={ props.eventId } />
           </div>
 
           {

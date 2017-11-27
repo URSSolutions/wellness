@@ -8,7 +8,7 @@ import { formatHoursDate } from '../services/format-date'
 
 class FeedbackCard extends Component {
   componentDidMount () {
-    this.props.fetchProfessional(this.props.feedback.professional_id)
+    this.props.fetchProfessional(this.props.eventId, this.props.feedback.professional_id)
   }
 
   render () {

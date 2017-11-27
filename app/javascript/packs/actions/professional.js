@@ -2,13 +2,13 @@ import * as TYPES from './types'
 import API from '../services/api'
 import { showSpinner, hideSpinner } from './spinner'
 
-export const fetchProfessional = (id) => {
+export const fetchProfessional = (eventId, id) => {
   return (dispatch) => {
     dispatch(showSpinner())
 
-    return API.get(`/api/events/${id}`)
+    return API.get(`/api/events/${eventId}/professionals/${id}`)
       .then((response) => {
-        dispatch(fetchProfessionalSuccess(response.data.professionals[0]))
+        dispatch(fetchProfessionalSuccess(response.data))
       })
       .catch((error) => dispatch(fetchProfessionalError(error)))
       .then(() => dispatch(hideSpinner()))

@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 
 import FeedbackCard from '../components/feedback-card'
 
-const Feedbacks = ({ feedbacks }) => {
+const Feedbacks = ({ feedbacks, eventId }) => {
   const renderFeedback = () => {
     if (feedbacks.length) {
       return feedbacks.map((feedback, index) =>
         <FeedbackCard
           key={ index }
           feedback={ feedback }
+          eventId={ eventId }
         />
       )
     }
