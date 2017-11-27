@@ -1,19 +1,19 @@
 import * as TYPES from '../actions/types'
 
 const DEFAULT_STATE = {
-  currentProfessional: {},
+  professionals: [],
   error: null
 }
 
 export const professional = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
-    case TYPES.FETCH_PROFESSIONAL_SUCCESS:
+    case TYPES.FETCH_PROFESSIONALS_SUCCESS:
       return {
         ...state,
-        currentProfessional: action.professional
+        professionals: action.professionals
       }
 
-    case TYPES.FETCH_PROFESSIONAL_ERROR:
+    case TYPES.FETCH_PROFESSIONALS_ERROR:
       return {
         ...state,
         error: action.error
