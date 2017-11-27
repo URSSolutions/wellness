@@ -21,14 +21,16 @@ class ProfessionalHome extends Component {
       <div>
         <Header />
 
-        <section className='user-home'>
-          <div className='user-home__general-info'>
-            {
-              !!props.events.length &&
-              <ProfessionalEvents events={ props.events } auth={ props.auth } />
-            }
-          </div>
-        </section>
+        <div className="component-container">
+          <section className='user-home component-item'>
+            <div className='user-home__general-info'>
+              {
+                !!props.events.length &&
+                <ProfessionalEvents events={ props.events } auth={ props.auth } />
+              }
+            </div>
+          </section>
+        </div>
       </div>
     )
   }

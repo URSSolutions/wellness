@@ -46,7 +46,7 @@ class UserDetail extends Component {
         <Header />
 
         <div className="component-container">
-          <div className='user-home'>
+          <div className='user-home component-item'>
             <UserEvents
               events={ props.events }
               handleEvent={ this.handleEvent }
